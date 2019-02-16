@@ -72,7 +72,9 @@
     <Compile Include="Assets\2d-extras-master\Tilemap\Tiles\Rule Tile\Scripts\RuleTile.cs" />
     <Compile Include="Assets\2d-extras-master\Tilemap\Tiles\Terrain Tile\Scripts\TerrainTile.cs" />
     <Compile Include="Assets\2d-extras-master\Tilemap\Tiles\Weighted Random Tile\WeightedRandomTile.cs" />
-    <Compile Include="Assets\cameraScript.cs" />
+    <Compile Include="Assets\LaserP.cs" />
+    <Compile Include="Assets\Scripts\CameraScript.cs" />
+    <Compile Include="Assets\Scripts\LaserSpawner.cs" />
     <Compile Include="Assets\Scripts\movement.cs" />
     <None Include="Assets\2d-extras-master\Tilemap\Tiles\Rule Tile\ScriptTemplates\NewCustomRuleTile.cs.txt" />
     <None Include="Assets\2d-extras-master\Tilemap\Brushes\Tint Brush Smooth\Shaders\TintedTilemap.shader" />
