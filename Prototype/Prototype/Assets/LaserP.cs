@@ -21,4 +21,10 @@ public class LaserP : MonoBehaviour {
             Destroy(this.gameObject);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        print("hit");
+        Destroy(this.gameObject);
+    }
 }
