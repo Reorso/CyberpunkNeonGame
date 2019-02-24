@@ -354,6 +354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee35289fd8c16b4fb6ebe7584273eba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneName: FirstPrototype
 --- !u!4 &292201690
 Transform:
   m_ObjectHideFlags: 0
@@ -1158,9 +1159,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1739074056}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4295c23078256541930b8a0a6df3e52, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ee35289fd8c16b4fb6ebe7584273eba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneName: RandomGeneration
 --- !u!4 &1739074058
 Transform:
   m_ObjectHideFlags: 0

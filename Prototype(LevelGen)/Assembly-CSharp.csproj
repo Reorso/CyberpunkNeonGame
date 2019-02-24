@@ -79,23 +79,22 @@
     <Compile Include="Assets\Scripts\LevelGenerator.cs" />
     <Compile Include="Assets\Scripts\movement.cs" />
     <Compile Include="Assets\Scripts\SceneLoader.cs" />
-    <Compile Include="Assets\Scripts\SceneLoader1.cs" />
     <Compile Include="Assets\Scripts\SceneLoader2.cs" />
     <Compile Include="Assets\Scripts\SpinPower.cs" />
     <Compile Include="Assets\Scripts\SwapCharacter.cs" />
     <None Include="Assets\2d-extras-master\Tilemap\Tiles\Rule Tile\ScriptTemplates\NewCustomRuleTile.cs.txt" />
     <None Include="Assets\2d-extras-master\Tilemap\Brushes\Tint Brush Smooth\Shaders\TintedTilemap.shader" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>C:/Users/reors/Desktop/Prototype(LevelGen)/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/reors/Documents/GitHub/CyberpunkNeonGame/Prototype(LevelGen)/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/reors/Desktop/Prototype(LevelGen)/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/reors/Documents/GitHub/CyberpunkNeonGame/Prototype(LevelGen)/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/reors/Desktop/Prototype(LevelGen)/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/reors/Documents/GitHub/CyberpunkNeonGame/Prototype(LevelGen)/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/reors/Desktop/Prototype(LevelGen)/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/reors/Documents/GitHub/CyberpunkNeonGame/Prototype(LevelGen)/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>D:/UnitySchool/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

@@ -75,16 +75,16 @@
     <Compile Include="Assets\2d-extras-master\Tilemap\Tiles\Rule Tile\Scripts\Editor\CustomRuleTileMenu.cs" />
     <Compile Include="Assets\2d-extras-master\Tilemap\Tiles\Rule Tile\Scripts\Editor\RuleTileEditor.cs" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>C:/Users/reors/Desktop/Prototype(LevelGen)/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/reors/Documents/GitHub/CyberpunkNeonGame/Prototype(LevelGen)/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/reors/Desktop/Prototype(LevelGen)/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/reors/Documents/GitHub/CyberpunkNeonGame/Prototype(LevelGen)/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/reors/Desktop/Prototype(LevelGen)/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/reors/Documents/GitHub/CyberpunkNeonGame/Prototype(LevelGen)/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/reors/Desktop/Prototype(LevelGen)/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/reors/Documents/GitHub/CyberpunkNeonGame/Prototype(LevelGen)/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>D:/UnitySchool/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
