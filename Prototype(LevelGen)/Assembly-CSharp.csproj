@@ -72,13 +72,13 @@
     <Compile Include="Assets\2d-extras-master\Tilemap\Tiles\Rule Tile\Scripts\RuleTile.cs" />
     <Compile Include="Assets\2d-extras-master\Tilemap\Tiles\Terrain Tile\Scripts\TerrainTile.cs" />
     <Compile Include="Assets\2d-extras-master\Tilemap\Tiles\Weighted Random Tile\WeightedRandomTile.cs" />
-    <Compile Include="Assets\Scenes\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\CameraScript.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\LaserP.cs" />
     <Compile Include="Assets\Scripts\LaserSpawner.cs" />
     <Compile Include="Assets\Scripts\LevelGenerator.cs" />
     <Compile Include="Assets\Scripts\movement.cs" />
+    <Compile Include="Assets\Scripts\RotateMenu.cs" />
     <Compile Include="Assets\Scripts\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\SceneLoader2.cs" />
     <Compile Include="Assets\Scripts\SpinPower.cs" />
