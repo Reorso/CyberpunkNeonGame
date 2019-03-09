@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4503060131836262}
   - component: {fileID: 212213023598941974}
   - component: {fileID: 61222947510215560}
-  - component: {fileID: 114975770042871244}
   - component: {fileID: 50580065116192786}
+  - component: {fileID: 114844452545564422}
   m_Layer: 0
   m_Name: laserProjectile
   m_TagString: Bullet
@@ -38,7 +38,7 @@ Transform:
   m_GameObject: {fileID: 1011838889427088}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.517, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -88,7 +88,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.023455203, y: 0.21078598}
   m_EdgeRadius: 0
---- !u!114 &114975770042871244
+--- !u!114 &114844452545564422
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,12 +96,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1011838889427088}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a00e54bf624e9c44e8c05fe5bdb254cf, type: 3}
+  m_Script: {fileID: 11500000, guid: b31baadc50e6d614b9bfffa70164606f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
   initialpos: {x: 0, y: 0}
-  maxDist: 5
+  maxDist: 20
 --- !u!212 &212213023598941974
 SpriteRenderer:
   m_ObjectHideFlags: 1

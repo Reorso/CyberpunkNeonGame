@@ -28,15 +28,17 @@ public class Enemy : MonoBehaviour {
 	}
     void Follow()
     {
-        transform.up = path[currStep].position - transform.position;
-        rb.velocity = transform.up * speed;
-        if (Vector2.Distance(transform.position, path[currStep].position)<=minRadius)
-        {
-            currStep++;
-            currStep = currStep % path.Length;
-            //rb.velocity = transform.up * speed;
-            //print(currStep);
-        }
+
+        //transform.up = path[currStep].position - transform.position;
+        //rb.velocity = transform.up * speed;
+        //if (Vector2.Distance(transform.position, path[currStep].position)<=minRadius)
+        //{
+        //    currStep++;
+        //    currStep = currStep % path.Length;
+        //    rb.velocity = transform.up * speed;
+        //    print(currstep);
+        //}
+
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -52,4 +54,5 @@ public class Enemy : MonoBehaviour {
             }
         }
     }
+
 }

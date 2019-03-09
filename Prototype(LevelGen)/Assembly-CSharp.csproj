@@ -78,6 +78,7 @@
     <Compile Include="Assets\Scripts\LaserSpawner.cs" />
     <Compile Include="Assets\Scripts\LevelGenerator.cs" />
     <Compile Include="Assets\Scripts\movement.cs" />
+    <Compile Include="Assets\Scripts\Power.cs" />
     <Compile Include="Assets\Scripts\RotateMenu.cs" />
     <Compile Include="Assets\Scripts\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\SceneLoader2.cs" />

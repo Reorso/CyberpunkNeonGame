@@ -24,7 +24,9 @@ public class LaserP : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print("hit");
-        Destroy(this.gameObject);
+        if (!collision.CompareTag("Player")) { 
+            print("hit");
+            Destroy(this.gameObject);
+        }
     }
 }
