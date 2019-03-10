@@ -13,7 +13,7 @@ public class LaserSpawner : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         if (Input.GetMouseButton(1) && Time.time > timeToFire)
         {
             timeToFire = Time.time + 1 / fireRate;

@@ -74,6 +74,10 @@
     <Compile Include="Assets\2d-extras-master\Tilemap\Tiles\Weighted Random Tile\WeightedRandomTile.cs" />
     <Compile Include="Assets\Scripts\CameraScript.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Gen\BoardCreator.cs" />
+    <Compile Include="Assets\Scripts\Gen\Corridor.cs" />
+    <Compile Include="Assets\Scripts\Gen\IntRange.cs" />
+    <Compile Include="Assets\Scripts\Gen\Room.cs" />
     <Compile Include="Assets\Scripts\LaserP.cs" />
     <Compile Include="Assets\Scripts\LaserSpawner.cs" />
     <Compile Include="Assets\Scripts\LevelGenerator.cs" />
@@ -86,6 +90,7 @@
     <Compile Include="Assets\Scripts\SwapCharacter.cs" />
     <None Include="Assets\2d-extras-master\Tilemap\Tiles\Rule Tile\ScriptTemplates\NewCustomRuleTile.cs.txt" />
     <None Include="Assets\2d-extras-master\Tilemap\Brushes\Tint Brush Smooth\Shaders\TintedTilemap.shader" />
+    <None Include="Assets\Fonts\OFL.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/reors/Documents/GitHub/CyberpunkNeonGame/Prototype(LevelGen)/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

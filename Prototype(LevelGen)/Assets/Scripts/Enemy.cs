@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
     public Transform[] path;
-    bool active = true;
-    public float speed,minRadius;
+    public Transform target;
+    bool active = true, chasing = false;
+    public float speed,minRadius, minPlayerRadius;
     int currStep = 0;
     Rigidbody2D rb;
     public float life = 5;
@@ -28,17 +29,24 @@ public class Enemy : MonoBehaviour {
 	}
     void Follow()
     {
-
-        //transform.up = path[currStep].position - transform.position;
-        //rb.velocity = transform.up * speed;
-        //if (Vector2.Distance(transform.position, path[currStep].position)<=minRadius)
-        //{
-        //    currStep++;
-        //    currStep = currStep % path.Length;
-        //    rb.velocity = transform.up * speed;
-        //    print(currstep);
-        //}
-
+        Vector2 distance;
+        distance =  target.position - this.transform.position;
+        if(distance.magnitude < minPlayerRadius)
+        {
+            chasing = true;
+            transform.up = distance;
+        }
+        else 
+        {
+            transform.up = path[currStep].position - transform.position;
+            if (Vector2.Distance(transform.position, path[currStep].position) <= minRadius) { 
+                currStep++;
+                currStep = currStep % path.Length;
+            }
+            //rb.velocity = transform.up * speed;
+            //print(currstep);
+        }
+        rb.velocity = transform.up * speed;
     }
     private void OnTriggerEnter2D(Collider2D other)
     {

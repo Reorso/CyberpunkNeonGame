@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour {
     public Transform target;
-    Vector3 pos;
-	// Use this for initialization
-	void Start () {
-        pos = transform.position;
-	}
+    Vector3 mousepos;
+    public float smoothTime = 0.3f, offset = 5;
+    private Vector3 desiredPos,velocity = Vector3.zero;
+
 	
 	// Update is called once per frame
-	void Update () {
-        pos.x = target.position.x;
-        pos.y = target.position.y;
-        transform.position = pos;
+	void FixedUpdate () {
+        mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        mousepos = mousepos.normalized* offset;
+        desiredPos = target.position + mousepos / 2;
+        desiredPos.z = -10;
+        transform.position = Vector3.SmoothDamp(transform.position, desiredPos,ref velocity, smoothTime);
+
+
 	}
 }

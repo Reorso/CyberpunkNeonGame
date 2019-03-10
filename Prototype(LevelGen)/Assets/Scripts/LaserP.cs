@@ -14,10 +14,9 @@ public class LaserP : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         if (Vector2.Distance(initialpos, transform.position) >= maxDist)
         {
-            print("my battery is running low... it's getting darker");
             Destroy(this.gameObject);
         }
     }
