@@ -12,25 +12,37 @@ public class BoardCreator : MonoBehaviour
 
     public int columns = 100;                                 // The number of columns on the board (how wide it will be).
     public int rows = 100;                                    // The number of rows on the board (how tall it will be).
-    public IntRange numRooms = new IntRange(15, 20);         // The range of the number of rooms there can be.
-    public IntRange roomWidth = new IntRange(3, 10);         // The range of widths rooms can have.
-    public IntRange roomHeight = new IntRange(3, 10);        // The range of heights rooms can have.
-    public IntRange corridorLength = new IntRange(6, 10);    // The range of lengths corridors between rooms can have.
+    public IntRange numRooms = new IntRange(15, 20);          // The range of the number of rooms there can be.
+    public IntRange roomWidth = new IntRange(3, 10);          // The range of widths rooms can have.
+    public IntRange roomHeight = new IntRange(3, 10);         // The range of heights rooms can have.
+    public IntRange corridorLength = new IntRange(6, 10);     // The range of lengths corridors between rooms can have.
     public GameObject[] floorTiles;                           // An array of floor tile prefabs.
     public GameObject[] wallTiles;                            // An array of wall tile prefabs.
     public GameObject[] outerWallTiles;                       // An array of outer wall tile prefabs.
-    public GameObject player;
+    public GameObject[] doors;                                // An array of doors tile prefabs.
+    public GameObject[] keys;                                 // An array of keys tile prefabs.
+    public GameObject[] enemies;                              // An array of enemies prefabs.
+    public GameObject player;                                 //the player object.
+
 
     private TileType[][] tiles;                               // A jagged array of tile types representing the board, like a grid.
     private Room[] rooms;                                     // All the rooms that are created for this board.
     private Corridor[] corridors;                             // All the corridors that connect the rooms.
     private GameObject boardHolder;                           // GameObject that acts as a container for all other tiles.
+    private GameObject floorTilesContainer;                   // GameObject that acts as a container for all other tiles.
+    private GameObject wallTilesContainer;                    // GameObject that acts as a container for all other tiles.
+    private GameObject otherStuffContainer;
+    private GameObject playerContainer;
 
 
     private void Start()
     {
         // Create the board holder.
         boardHolder = new GameObject("BoardHolder");
+        floorTilesContainer = new GameObject("FloorTilesContainer");
+        wallTilesContainer = new GameObject("WallTilesContainer");
+        otherStuffContainer = new GameObject("OtherStuffContainer");
+        playerContainer = new GameObject("playerContainer");
 
         SetupTilesArray();
 
@@ -41,6 +53,11 @@ public class BoardCreator : MonoBehaviour
 
         InstantiateTiles();
         InstantiateOuterWalls();
+
+        SpawnPlayer();
+        SpawnDoorsAndKeys();
+        SpawnEnemies();
+        
     }
 
 
@@ -92,12 +109,6 @@ public class BoardCreator : MonoBehaviour
 
                 // Setup the corridor based on the room that was just created.
                 corridors[i].SetupCorridor(rooms[i], corridorLength, roomWidth, roomHeight, columns, rows, false);
-            }
-
-            if (i == rooms.Length * .5f)
-            {
-                Vector3 playerPos = new Vector3(rooms[i].xPos, rooms[i].yPos, 0);
-                Instantiate(player, playerPos, Quaternion.identity);
             }
         }
 
@@ -176,13 +187,13 @@ public class BoardCreator : MonoBehaviour
             for (int j = 0; j < tiles[i].Length; j++)
             {
                 // ... and instantiate a floor tile for it.
-                InstantiateFromArray(floorTiles, i, j);
+                InstantiateFromArray(floorTiles, i, j, 0f, floorTilesContainer);
 
                 // If the tile type is Wall...
                 if (tiles[i][j] == TileType.Wall)
                 {
                     // ... instantiate a wall over the top.
-                    InstantiateFromArray(wallTiles, i, j);
+                    InstantiateFromArray(wallTiles, i, j, 0f, floorTilesContainer);
                 }
             }
         }
@@ -216,7 +227,7 @@ public class BoardCreator : MonoBehaviour
         while (currentY <= endingY)
         {
             // ... instantiate an outer wall tile at the x coordinate and the current y coordinate.
-            InstantiateFromArray(outerWallTiles, xCoord, currentY);
+            InstantiateFromArray(outerWallTiles, xCoord, currentY, -2f, wallTilesContainer);
 
             currentY++;
         }
@@ -232,25 +243,51 @@ public class BoardCreator : MonoBehaviour
         while (currentX <= endingX)
         {
             // ... instantiate an outer wall tile at the y coordinate and the current x coordinate.
-            InstantiateFromArray(outerWallTiles, currentX, yCoord);
+            InstantiateFromArray(outerWallTiles, currentX, yCoord, -2f, wallTilesContainer);
 
             currentX++;
         }
     }
 
 
-    void InstantiateFromArray(GameObject[] prefabs, float xCoord, float yCoord)
+    void InstantiateFromArray(GameObject[] prefabs, float xCoord, float yCoord, float zCoord, GameObject parent)
     {
         // Create a random index for the array.
         int randomIndex = Random.Range(0, prefabs.Length);
+        //print(randomIndex+"        "+ prefabs.Length);
 
         // The position to be instantiated at is based on the coordinates.
-        Vector3 position = new Vector3(xCoord, yCoord, 0f);
+        Vector3 position = new Vector3(xCoord, yCoord, zCoord);
 
         // Create an instance of the prefab from the random index of the array.
         GameObject tileInstance = Instantiate(prefabs[randomIndex], position, Quaternion.identity) as GameObject;
 
         // Set the tile's parent to the board holder.
-        tileInstance.transform.parent = boardHolder.transform;
+        tileInstance.transform.parent = parent.transform;
+    }
+
+    void SpawnDoorsAndKeys()
+    {
+        foreach (Corridor c in corridors)
+        {
+            InstantiateFromArray(doors, c.startXPos, c.startYPos, -2f, otherStuffContainer);
+        }
+    }
+
+    void SpawnEnemies()
+    {
+        bool skipFirst = true;
+        foreach (Room r in rooms)
+        {
+            if(!skipFirst) { 
+                InstantiateFromArray(enemies, new IntRange(r.xPos, r.xPos + r.roomWidth).Random, new IntRange(r.yPos, r.yPos + r.roomHeight).Random, -2f, otherStuffContainer);
+            }
+            skipFirst = false;
+        }
+    }
+    void SpawnPlayer()
+    {
+        Vector3 playerPos = new Vector3(rooms[0].xPos, rooms[0].yPos, 0);
+        Instantiate(player, playerPos, Quaternion.identity, playerContainer.transform);
     }
 }

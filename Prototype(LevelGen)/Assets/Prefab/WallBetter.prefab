@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4267926505194026}
   - component: {fileID: 212700093756078478}
   - component: {fileID: 61051470276539850}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WallBetter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
