@@ -23,7 +23,7 @@ public class BoardCreator : MonoBehaviour
     public GameObject[] keys;                                 // An array of keys tile prefabs.
     public GameObject[] enemies;                              // An array of enemies prefabs.
     public GameObject player;                                 //the player object.
-
+    public int enemyRate = 3;
 
     private TileType[][] tiles;                               // A jagged array of tile types representing the board, like a grid.
     private Room[] rooms;                                     // All the rooms that are created for this board.
@@ -279,8 +279,15 @@ public class BoardCreator : MonoBehaviour
         bool skipFirst = true;
         foreach (Room r in rooms)
         {
-            if(!skipFirst) { 
-                InstantiateFromArray(enemies, new IntRange(r.xPos, r.xPos + r.roomWidth).Random, new IntRange(r.yPos, r.yPos + r.roomHeight).Random, -2f, otherStuffContainer);
+            if(!skipFirst) {
+                for (int i = 0; i < (r.roomHeight + r.roomWidth) / (2 * enemyRate); i++) // 12 + 10 / 2 * 3 =
+                {
+                    int crowdnessX = (r.roomWidth / enemyRate);
+                    int crowdnessY = (r.roomHeight / enemyRate);
+                    int x = new IntRange(r.xPos + crowdnessX * i, r.xPos + crowdnessX * (i + 1)).Random;
+                    int y = new IntRange(r.yPos + crowdnessY * i, r.yPos + crowdnessY * (i + 1)).Random;
+                    InstantiateFromArray( enemies, (float)x, (float)y, -2f, otherStuffContainer );
+                }
             }
             skipFirst = false;
         }

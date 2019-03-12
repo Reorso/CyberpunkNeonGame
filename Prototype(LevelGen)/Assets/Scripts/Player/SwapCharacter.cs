@@ -6,24 +6,37 @@ public class SwapCharacter : MonoBehaviour {
 
     //public GameObject[] shifter;
     public Color[] shifterC;
+    public Sprite[] shifterS;
     SpriteRenderer sr;
+    Animator an;
     int current = 0;
     Vector3 tempPos;
     Quaternion tempRot;
     public KeyCode skill;
-
-	// Use this for initialization
-	void Start () {
+    bool alreadyPressed = true;
+    // Use this for initialization
+    void Start () {
         sr = this.GetComponent<SpriteRenderer>();
+        an = this.GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+	void LateUpdate () {
+
+        if (Input.GetAxis("Swap") > 0.2)
         {
-            ShapeShift();
+            if (!alreadyPressed)
+            {
+                ShapeShift();
+                alreadyPressed = true;
+            }
         }
-        if (Input.GetKeyDown(skill))
+        else
+        {
+            alreadyPressed = false;
+        }
+
+        if (Input.GetAxis("Power") > 0.2 )
         {
             SkillActivate(current);
         }
@@ -38,10 +51,18 @@ public class SwapCharacter : MonoBehaviour {
         //shifter[current].SetActive(true);
         //shifter[current].transform.position = tempPos;
         //shifter[current].transform.rotation = tempRot;
-
+        an.enabled = false;
         current++;
-        current %= shifterC.Length;
-        sr.color = shifterC[current];
+        //current %= shifterC.Length;
+        //sr.color = shifterC[current];
+
+        current %= shifterS.Length;
+        print(current);
+        sr.sprite = shifterS[current];
+        if(current == 0)
+        {
+            an.enabled = true;
+        }
     }
     void SkillActivate(int form)
     {

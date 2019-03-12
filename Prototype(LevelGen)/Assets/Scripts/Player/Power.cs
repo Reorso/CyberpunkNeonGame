@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Power : MonoBehaviour {
-    public KeyCode power;
 	// Use this for initialization
 	void Start () {
         
@@ -11,7 +10,7 @@ public class Power : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKey(power))
+        if (Input.GetAxis("Power") > 0.2)
         {
             this.gameObject.tag = "Undetectable";
         }

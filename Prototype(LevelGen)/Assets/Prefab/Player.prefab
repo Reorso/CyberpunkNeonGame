@@ -290,7 +290,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 6f8b1ee8c3524dc458f51f1b0a5dc1e6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -308,7 +308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laserP: {fileID: 1011838889427088, guid: c4b148926d00836449677f921a526138, type: 2}
-  fireRate: 20
+  fireRate: 7
 --- !u!114 &114302088394240960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -341,6 +341,9 @@ MonoBehaviour:
   - {r: 0, g: 1, b: 0.0802474, a: 1}
   - {r: 0.52596474, g: 0, b: 1, a: 1}
   - {r: 0, g: 1, b: 0.99077415, a: 1}
+  shifterS:
+  - {fileID: 21300000, guid: ec0c73b837994954aabccc80e8678eac, type: 3}
+  - {fileID: 21300000, guid: f6446fe9678196e46ad010b73e7acf36, type: 3}
   skill: 0
 --- !u!114 &114488177242161346
 MonoBehaviour:
@@ -367,7 +370,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56bee8457abcda94cb3884edef55207c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 32
 --- !u!212 &212119835073971320
 SpriteRenderer:
   m_ObjectHideFlags: 1

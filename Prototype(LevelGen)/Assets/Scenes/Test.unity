@@ -5206,6 +5206,52 @@ Transform:
   m_Father: {fileID: 548466997}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &774261351
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4105011481414940, guid: 37038ec64bf533649a063834f67ba21d, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105011481414940, guid: 37038ec64bf533649a063834f67ba21d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105011481414940, guid: 37038ec64bf533649a063834f67ba21d, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105011481414940, guid: 37038ec64bf533649a063834f67ba21d, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105011481414940, guid: 37038ec64bf533649a063834f67ba21d, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105011481414940, guid: 37038ec64bf533649a063834f67ba21d, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105011481414940, guid: 37038ec64bf533649a063834f67ba21d, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105011481414940, guid: 37038ec64bf533649a063834f67ba21d, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306871258955348, guid: 37038ec64bf533649a063834f67ba21d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 37038ec64bf533649a063834f67ba21d, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1343264013
 Prefab:
   m_ObjectHideFlags: 0
@@ -5320,11 +5366,11 @@ MonoBehaviour:
     m_Min: 15
     m_Max: 20
   roomWidth:
-    m_Min: 6
-    m_Max: 10
+    m_Min: 10
+    m_Max: 14
   roomHeight:
-    m_Min: 6
-    m_Max: 10
+    m_Min: 8
+    m_Max: 12
   corridorLength:
     m_Min: 8
     m_Max: 10
@@ -5342,6 +5388,7 @@ MonoBehaviour:
   enemies:
   - {fileID: 1893891874008394, guid: 4f95202a4bd366c448dc0261a1be5fba, type: 2}
   player: {fileID: 1306871258955348, guid: 37038ec64bf533649a063834f67ba21d, type: 2}
+  enemyRate: 3
 --- !u!4 &1384616973
 Transform:
   m_ObjectHideFlags: 0
