@@ -23,6 +23,7 @@ public class BoardCreator : MonoBehaviour
     public GameObject[] keys;                                 // An array of keys tile prefabs.
     public GameObject[] enemies;                              // An array of enemies prefabs.
     public GameObject player;                                 //the player object.
+    public GameObject exit;
     public int enemyRate = 3;
 
     private TileType[][] tiles;                               // A jagged array of tile types representing the board, like a grid.
@@ -55,7 +56,7 @@ public class BoardCreator : MonoBehaviour
         InstantiateOuterWalls();
 
         SpawnPlayer();
-        SpawnDoorsAndKeys();
+        //SpawnDoorsAndKeys();
         SpawnEnemies();
         
     }
@@ -109,6 +110,10 @@ public class BoardCreator : MonoBehaviour
 
                 // Setup the corridor based on the room that was just created.
                 corridors[i].SetupCorridor(rooms[i], corridorLength, roomWidth, roomHeight, columns, rows, false);
+            }
+            if(i == rooms.Length - 1)
+            {
+                CreateExit(rooms[i]);
             }
         }
 
@@ -266,13 +271,13 @@ public class BoardCreator : MonoBehaviour
         tileInstance.transform.parent = parent.transform;
     }
 
-    void SpawnDoorsAndKeys()
-    {
-        foreach (Corridor c in corridors)
-        {
-            InstantiateFromArray(doors, c.startXPos, c.startYPos, -2f, otherStuffContainer);
-        }
-    }
+    //void SpawnDoorsAndKeys()
+    //{
+    //    foreach (Corridor c in corridors)
+    //    {
+    //        InstantiateFromArray(doors, c.startXPos, c.startYPos, -2f, otherStuffContainer);
+    //    }
+    //}
 
     void SpawnEnemies()
     {
@@ -296,5 +301,13 @@ public class BoardCreator : MonoBehaviour
     {
         Vector3 playerPos = new Vector3(rooms[0].xPos, rooms[0].yPos, 0);
         Instantiate(player, playerPos, Quaternion.identity, playerContainer.transform);
+    }
+    void CreateExit(Room r)
+    {
+        Corridor temp = new Corridor();
+        temp.SetupCorridor(r, new IntRange(2,2), new IntRange(r.roomWidth, r.roomWidth), new IntRange(r.roomHeight, r.roomHeight), columns, rows, false);
+        GameObject uscita = Instantiate(exit, playerContainer.transform);
+        print(temp.EndPositionX + "" + temp.startXPos + "" + temp.EndPositionY + "" + temp.startYPos);
+        uscita.transform.position = new Vector3(temp.startXPos, temp.startYPos, -2);
     }
 }

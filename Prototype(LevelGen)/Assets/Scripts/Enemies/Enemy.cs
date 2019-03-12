@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
     //public Transform[] path;
+    public GameObject healthBar;
     public float startTime = 0;
     public float waitFor = 2;
     bool timerStart = false;
@@ -12,7 +13,7 @@ public class Enemy : MonoBehaviour {
     public float speed, minRadius, minPlayerRadius;
     int currStep = 0;
     Rigidbody2D rb;
-    public float life = 5;
+    public float health = 5, maxhealth = 5;
     public Quaternion desiredRot;
     public float rotSpeed;
 
@@ -71,13 +72,18 @@ public class Enemy : MonoBehaviour {
     {
         if (other.CompareTag("Bullet"))
         {
-            if(life <= 0)
+            if(health <= 1)
             {
                 Destroy(this.gameObject);
             }
             else
             {
-                life--;
+                healthBar.SetActive(true);
+                health--;
+                Vector3 scale = healthBar.transform.localScale;
+                scale.x *= (health / maxhealth);
+                healthBar.transform.localScale = scale;
+                minPlayerRadius = 100;
             }
         }
     }

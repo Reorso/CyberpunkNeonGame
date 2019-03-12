@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class movement : MonoBehaviour {
+    public GameObject loosePanel;
+    bool cd = false;
+    public float startTime = 0;
+    int health = 6, maxhealth = 6;
+    public GameObject healthBar;
     public Transform arm;
     public float speed = 5;
     public Vector2 direction, rot, shootingDir;
@@ -18,11 +23,19 @@ public class movement : MonoBehaviour {
         tr = GetComponent<Transform>();
         an = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+        loosePanel = GameObject.FindGameObjectsWithTag("loosePanel")[0];
+        loosePanel.SetActive(false);
     }
 
     // Update is called once per frame
     void FixedUpdate() {
-
+        if (cd)
+        {
+            if (startTime - Time.time <= -2) {
+                cd = false;
+                startTime = 0;
+            }
+        }
         direction.x = Input.GetAxis("Horizontal");
         direction.y = Input.GetAxis("Vertical");
         shootingDir.x = Input.GetAxis("ShootingHorizontal");
@@ -73,5 +86,32 @@ public class movement : MonoBehaviour {
             facingRight = state;
         }
 
+    }
+    void OnCollisionEnter2D(Collision2D other)
+    {
+
+        if (other.gameObject.CompareTag("Finish"))
+        {
+
+            if (health <= 1 && !cd)
+            {
+                Loose();
+            }
+            else
+            {
+                healthBar.SetActive(true);
+                health--;
+                print(health);
+                Vector3 scale = healthBar.transform.localScale;
+                scale.x *= (health / maxhealth);
+                healthBar.transform.localScale = scale;
+                cd = true;
+                startTime = Time.time;
+            }
+        }
+    }
+    void Loose()
+    {
+        loosePanel.SetActive(true);
     }
 }

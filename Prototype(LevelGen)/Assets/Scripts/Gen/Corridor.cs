@@ -56,6 +56,7 @@ public class Corridor
         // If this is not the first corridor and the randomly selected direction is opposite to the previous corridor's direction...
         if (!firstCorridor && direction == oppositeDirection)
         {
+
             // Rotate the direction 90 degrees clockwise (North becomes East, East becomes South, etc).
             // This is a more broken down version of the opposite direction operation above but instead of adding 2 we're adding 1.
             // This means instead of rotating 180 (the opposite direction) we're rotating 90.
