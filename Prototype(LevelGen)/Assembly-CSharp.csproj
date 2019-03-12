@@ -74,6 +74,8 @@
     <Compile Include="Assets\2d-extras-master\Tilemap\Tiles\Weighted Random Tile\WeightedRandomTile.cs" />
     <Compile Include="Assets\Exit.cs" />
     <Compile Include="Assets\HealthBar.cs" />
+    <Compile Include="Assets\MenuHicoseadr.cs" />
+    <Compile Include="Assets\MenuShape.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraScript.cs" />
     <Compile Include="Assets\Scripts\Doors.cs" />
     <Compile Include="Assets\Scripts\Enemies\Enemy.cs" />

@@ -93,11 +93,11 @@ public class movement : MonoBehaviour {
         if (other.gameObject.CompareTag("Finish"))
         {
 
-            if (health <= 1 && !cd)
+            if (health <= 1)
             {
                 Loose();
             }
-            else
+            else if(!cd)
             {
                 healthBar.SetActive(true);
                 health--;
@@ -112,6 +112,7 @@ public class movement : MonoBehaviour {
     }
     void Loose()
     {
+        Destroy(this.gameObject);
         loosePanel.SetActive(true);
     }
 }
