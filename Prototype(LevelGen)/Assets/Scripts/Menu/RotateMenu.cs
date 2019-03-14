@@ -4,16 +4,24 @@ using UnityEngine;
 
 public class RotateMenu : MonoBehaviour
 {
-    public float speed = 0f, c = 5;
+    public float speed = 1, c = 0, smooth = 3, quantity, clamp;
+    Quaternion rot, desiredRot;
+    private void Start()
+    {
+        desiredRot = Quaternion.Euler(new Vector3(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360)));
 
+    }
 
     void Update()
     {
-        speed = Input.GetAxis("Horizontal");
-        speed = 1;
-        if (speed != 0)
+        c += Time.deltaTime;
+        rot = transform.localRotation;
+        desiredRot = Quaternion.Slerp(rot, desiredRot, quantity * c / smooth);
+        transform.rotation = Quaternion.Slerp(rot, desiredRot, speed * c / smooth);
+        if (c >= smooth || Vector3.Distance(desiredRot.eulerAngles, rot.eulerAngles) < clamp)
         {
-            transform.Rotate(Vector3.up, speed * c * Time.deltaTime);
+            desiredRot = Quaternion.Euler(new Vector3(Random.Range(0, 360), Random.Range(0, 360),Random.Range(0, 360)));
+            c = 0;
         }
 
     }

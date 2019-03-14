@@ -522,8 +522,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 558145f398bd4f34ab34ba29466328e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  c: 20
+  speed: 0.1
+  c: 0
+  smooth: 6
+  quantity: 100
+  clamp: 2
 --- !u!1 &762358705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1217,7 +1220,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 97
   field of view: 60
   orthographic: 1
   orthographic size: 5
@@ -1287,33 +1290,6 @@ Prefab:
     - target: {fileID: 4562565554664604, guid: 87c01732e2d688b4e850ace53323ef2e, type: 2}
       propertyPath: m_RootOrder
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114551685286392834, guid: 87c01732e2d688b4e850ace53323ef2e,
-        type: 2}
-      propertyPath: n
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 114551685286392834, guid: 87c01732e2d688b4e850ace53323ef2e,
-        type: 2}
-      propertyPath: radius
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4562565554664604, guid: 87c01732e2d688b4e850ace53323ef2e, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 43.467815
-      objectReference: {fileID: 0}
-    - target: {fileID: 4562565554664604, guid: 87c01732e2d688b4e850ace53323ef2e, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 43.467815
-      objectReference: {fileID: 0}
-    - target: {fileID: 4562565554664604, guid: 87c01732e2d688b4e850ace53323ef2e, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 43.467815
-      objectReference: {fileID: 0}
-    - target: {fileID: 114551685286392834, guid: 87c01732e2d688b4e850ace53323ef2e,
-        type: 2}
-      propertyPath: displacement
-      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87c01732e2d688b4e850ace53323ef2e, type: 2}
