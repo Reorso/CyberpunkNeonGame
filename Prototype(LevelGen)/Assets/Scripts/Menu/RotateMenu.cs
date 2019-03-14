@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class RotateMenu : MonoBehaviour
 {
-    public float speed = 0f, c = 10;
+    public float speed = 0f, c = 5;
 
 
     void Update()
     {
         speed = Input.GetAxis("Horizontal");
+        speed = 1;
         if (speed != 0)
         {
             transform.Rotate(Vector3.up, speed * c * Time.deltaTime);
