@@ -7,6 +7,10 @@ TagManager:
   - Bullet
   - Undetectable
   - loosePanel
+  - TrojanBullet
+  - WormBullet
+  - FisherBullet
+  - BackdoorBullet
   layers:
   - Default
   - TransparentFX

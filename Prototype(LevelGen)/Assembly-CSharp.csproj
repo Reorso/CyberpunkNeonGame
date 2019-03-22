@@ -95,6 +95,7 @@
     <Compile Include="Assets\Scripts\Player\SpinPower.cs" />
     <Compile Include="Assets\Scripts\Player\SwapCharacter.cs" />
     <Compile Include="Assets\Scripts\Player\Timer.cs" />
+    <Compile Include="Assets\Scripts\Player\Trojan.cs" />
     <Compile Include="Assets\Scripts\Projectiles\LaserP.cs" />
     <Compile Include="Assets\Scripts\Projectiles\LaserSpawner.cs" />
     <Compile Include="Assets\Scripts\Projectiles\RedCodeBullet.cs" />
