@@ -91,11 +91,13 @@
     <Compile Include="Assets\Scripts\Player\HealthBar.cs" />
     <Compile Include="Assets\Scripts\Player\movement.cs" />
     <Compile Include="Assets\Scripts\Player\Power.cs" />
+    <Compile Include="Assets\Scripts\Player\RedCode.cs" />
     <Compile Include="Assets\Scripts\Player\SpinPower.cs" />
     <Compile Include="Assets\Scripts\Player\SwapCharacter.cs" />
     <Compile Include="Assets\Scripts\Player\Timer.cs" />
     <Compile Include="Assets\Scripts\Projectiles\LaserP.cs" />
     <Compile Include="Assets\Scripts\Projectiles\LaserSpawner.cs" />
+    <Compile Include="Assets\Scripts\Projectiles\RedCodeBullet.cs" />
     <None Include="Assets\2d-extras-master\Tilemap\Tiles\Rule Tile\ScriptTemplates\NewCustomRuleTile.cs.txt" />
     <None Include="Assets\2d-extras-master\Tilemap\Brushes\Tint Brush Smooth\Shaders\TintedTilemap.shader" />
     <None Include="Assets\Fonts\OFL.txt" />

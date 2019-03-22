@@ -101,6 +101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4296919879712682}
+  - component: {fileID: 114563050105676280}
   m_Layer: 8
   m_Name: Arm
   m_TagString: Untagged
@@ -122,7 +123,6 @@ GameObject:
   - component: {fileID: 50216466061374408}
   - component: {fileID: 70503909848944002}
   - component: {fileID: 114375484746859360}
-  - component: {fileID: 114578448005946744}
   m_Layer: 8
   m_Name: sprite sheet walking_0
   m_TagString: Player
@@ -192,7 +192,7 @@ Transform:
   m_GameObject: {fileID: 1636594549727486}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.153, y: 0.067, z: 0}
-  m_LocalScale: {x: 0.15586, y: 0.13053276, z: 0.15586}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4291137740102504}
   - {fileID: 4261956685041636}
@@ -393,17 +393,20 @@ MonoBehaviour:
   target: {fileID: 4813610873919488}
   smoothTime: 0.3
   offset: 5
---- !u!114 &114578448005946744
+--- !u!114 &114563050105676280
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1637305017719108}
+  m_GameObject: {fileID: 1636594549727486}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56bee8457abcda94cb3884edef55207c, type: 3}
+  m_Script: {fileID: 11500000, guid: b06340cf932674a49b1af1b619ebdc3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullet: {fileID: 1011838889427088, guid: a0c166f11ebeab84680b324625d8cd17, type: 2}
+  clone: {fileID: 1561893681953928, guid: 0cde1608e39ff384380ff6625e9669a2, type: 2}
+  coolDown: 3
 --- !u!114 &114985113427650324
 MonoBehaviour:
   m_ObjectHideFlags: 1
