@@ -2,19 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RedCode : MonoBehaviour {
+public class RedCode : MonoBehaviour
+{
     private List<GameObject> clones;
     public GameObject bullet, clone;
     public float coolDown;
     private float time;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         time = 0;		
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         if(time < coolDown)
         {
             time += Time.deltaTime;

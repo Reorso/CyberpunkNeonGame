@@ -72,7 +72,7 @@ public class Enemy : MonoBehaviour {
     {
         if (other.CompareTag("Bullet"))
         {
-            if(health <= 1)
+            if (health <= 1)
             {
                 Destroy(this.gameObject);
             }
@@ -84,6 +84,74 @@ public class Enemy : MonoBehaviour {
                 scale.x *= (health / maxhealth);
                 healthBar.transform.localScale = scale;
                 minPlayerRadius = 100;
+            }
+
+            if (other.CompareTag("TrojanBullet"))
+            {
+                if (health <= 1)
+                {
+                    Destroy(this.gameObject);
+                }
+                else
+                {
+                    healthBar.SetActive(true);
+                    health -= 1.5f;
+                    Vector3 scale = healthBar.transform.localScale;
+                    scale.x *= (health / maxhealth);
+                    healthBar.transform.localScale = scale;
+                    minPlayerRadius = 100;
+                }
+            }
+
+            if (other.CompareTag("WormBullet"))
+            {
+                if (health <= 1)
+                {
+                    Destroy(this.gameObject);
+                }
+                else
+                {
+                    healthBar.SetActive(true);
+                    health -= 0.5f;
+                    Vector3 scale = healthBar.transform.localScale;
+                    scale.x *= (health / maxhealth);
+                    healthBar.transform.localScale = scale;
+                    minPlayerRadius = 100;
+                }
+            }
+
+            if (other.CompareTag("BackdoorBullet"))
+            {
+                if (health <= 1)
+                {
+                    Destroy(this.gameObject);
+                }
+                else
+                {
+                    healthBar.SetActive(true);
+                    health -= 2f;
+                    Vector3 scale = healthBar.transform.localScale;
+                    scale.x *= (health / maxhealth);
+                    healthBar.transform.localScale = scale;
+                    minPlayerRadius = 100;
+                }
+            }
+
+            if (other.CompareTag("FisherBullet"))
+            {
+                if (health <= 1)
+                {
+                    Destroy(this.gameObject);
+                }
+                else
+                {
+                    healthBar.SetActive(true);
+                    health --;
+                    Vector3 scale = healthBar.transform.localScale;
+                    scale.x *= (health / maxhealth);
+                    healthBar.transform.localScale = scale;
+                    minPlayerRadius = 100;
+                }
             }
         }
     }

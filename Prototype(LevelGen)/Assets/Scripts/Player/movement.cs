@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class movement : MonoBehaviour {
+public class movement : MonoBehaviour
+{
     public GameObject loosePanel;
     bool cd = false;
     public float startTime = 0;
