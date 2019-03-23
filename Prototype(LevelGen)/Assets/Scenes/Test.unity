@@ -5707,6 +5707,11 @@ Prefab:
       propertyPath: loosePanel
       value: 
       objectReference: {fileID: 1994809846}
+    - target: {fileID: 114302088394240960, guid: 37038ec64bf533649a063834f67ba21d,
+        type: 2}
+      propertyPath: speed
+      value: 280
+      objectReference: {fileID: 0}
     - target: {fileID: 1306871258955348, guid: 37038ec64bf533649a063834f67ba21d, type: 2}
       propertyPath: m_IsActive
       value: 0
@@ -6048,11 +6053,11 @@ MonoBehaviour:
     m_Min: 8
     m_Max: 10
   floorTiles:
-  - {fileID: 1292288822429528, guid: 398d392ef700dbe4194cbfba34bcbcf2, type: 2}
+  - {fileID: 1679618165030434, guid: d223a636d61d32b42b253c2f2cd6b10b, type: 2}
   wallTiles:
-  - {fileID: 1534332218264132, guid: ef89289c96500954a94ab0a842db475e, type: 2}
+  - {fileID: 1021382170495130, guid: 6522d0622fd1d7943a9e2172874c4bf2, type: 2}
   outerWallTiles:
-  - {fileID: 1534332218264132, guid: ef89289c96500954a94ab0a842db475e, type: 2}
+  - {fileID: 1021382170495130, guid: 6522d0622fd1d7943a9e2172874c4bf2, type: 2}
   doors:
   - {fileID: 1863702046503010, guid: 6a6f6edfd39760847b52130cba967fd2, type: 2}
   - {fileID: 1290834361499074, guid: da2b18488ba0e344ab3cfb4f2591acb3, type: 2}

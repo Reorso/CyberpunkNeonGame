@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class movement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     public GameObject loosePanel;
     bool cd = false;
@@ -42,24 +42,33 @@ public class movement : MonoBehaviour
         shootingDir.x = Input.GetAxis("ShootingHorizontal");
         shootingDir.y = Input.GetAxis("ShootingVertical");
 
-        if (direction != Vector2.zero) {
+        if (direction != Vector2.zero)
+        {
 
             rb.velocity = direction * speed * Time.fixedDeltaTime;
-            this.an.SetBool("Moving",true);
+            an.SetBool("Moving", true);
+            if (shootingDir == Vector2.zero)
+            {
+                an.SetFloat("Horizontal", direction.x);
+                an.SetFloat("Vertical", direction.y);
+            }
+            else
+            {
+                an.SetFloat("Horizontal", shootingDir.x);
+                an.SetFloat("Vertical", shootingDir.y);
+            }
 
         }
         else
         {
-            this.an.SetBool("Moving", false);
+            an.SetBool("Moving", false);
         }
-        
-
         //mpos = Camera.main.ScreenToWorldPoint(Input.mousePosition);       
         //rot = new Vector2(
         //  mpos.x - arm.position.x, 
         //  mpos.y - arm.position.y
         // );
-        if(shootingDir != Vector2.zero)
+        if (shootingDir != Vector2.zero)
         {
             arm.up = shootingDir;
         }
@@ -80,7 +89,7 @@ public class movement : MonoBehaviour
     }
     void Flip(bool state)
     {
-        sr.flipX = state;
+        //sr.flipX = state;
         if(facingRight != state)
         {
             arm.localPosition = new Vector3(-arm.localPosition.x, arm.localPosition.y);

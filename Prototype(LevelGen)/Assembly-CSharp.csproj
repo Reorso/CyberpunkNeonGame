@@ -88,8 +88,9 @@
     <Compile Include="Assets\Scripts\Menu\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\Menu\SceneLoader2.cs" />
     <Compile Include="Assets\Scripts\Menu\Slider.cs" />
+    <Compile Include="Assets\Scripts\Player\CloneMovement.cs" />
     <Compile Include="Assets\Scripts\Player\HealthBar.cs" />
-    <Compile Include="Assets\Scripts\Player\movement.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Player\Power.cs" />
     <Compile Include="Assets\Scripts\Player\RedCode.cs" />
     <Compile Include="Assets\Scripts\Player\SpinPower.cs" />
