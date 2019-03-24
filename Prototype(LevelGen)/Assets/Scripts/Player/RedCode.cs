@@ -33,8 +33,7 @@ public class RedCode : MonoBehaviour
     {
         GameObject temp = Instantiate(bullet, transform.parent);
         temp.transform.localPosition = Vector3.zero;
-        temp.transform.localRotation = Quaternion.identity;
-
+        temp.transform.localRotation = this.transform.localRotation;
     }
 
     public void AddClone(Vector3 pos)
