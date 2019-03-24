@@ -38,7 +38,7 @@ public class Trojan : MonoBehaviour
         }
         else 
         {
-            transform.gameObject.tag = "Player";
+            transform.parent.gameObject.tag = "Player";
             c.a = 255;
             disguised = false;
 
@@ -49,7 +49,7 @@ public class Trojan : MonoBehaviour
     {
         hiddenTime = 0;
         disguised = true;
-        transform.gameObject.tag = "Undetectable";
+        transform.parent.gameObject.tag = "Undetectable";
         c.a = 150;
         GetComponent<SpriteRenderer>().material.color = c;
     }
