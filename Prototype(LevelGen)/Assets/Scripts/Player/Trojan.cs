@@ -8,12 +8,16 @@ public class Trojan : MonoBehaviour
     public float coolDown = 7;
     float time;
     float hiddenTime;
+    bool disguised = false;
+    Color c;
 
-	void Start ()
+
+    void Start ()
     {
         time = 0;
         hiddenTime = 0;
-	}
+        c = GetComponent<SpriteRenderer>().material.color;
+    }
 	
 	void Update ()
     {
@@ -21,22 +25,32 @@ public class Trojan : MonoBehaviour
         {
             time += Time.deltaTime;
         }
-        else if (Input.GetAxis("Power") > 0)
+        else if (Input.GetAxis("Power") > 0 && !disguised)
         {
             Disguise();
             hiddenTime += Time.deltaTime;
             time = 0;
         }
-	}
+
+        if (hiddenTime <= 5 && disguised)
+        {
+            hiddenTime += Time.deltaTime;
+        }
+        else 
+        {
+            transform.gameObject.tag = "Player";
+            c.a = 255;
+            disguised = false;
+        }
+    }
 
     void Disguise()
     {
-        transform.gameObject.tag = "Undetectable";
-        if (hiddenTime >= 5)
-        {
-            transform.gameObject.tag = "Player";
-        }
         hiddenTime = 0;
+        disguised = true;
+        transform.gameObject.tag = "Undetectable";
+        c.a = 150;
+        GetComponent<SpriteRenderer>().material.color = c;
     }
 
    // IEnumerator DisguiseC()
