@@ -14,34 +14,40 @@ public class Trojan : MonoBehaviour
 
     void Start ()
     {
-        time = 0;
+        time = coolDown;
         hiddenTime = 0;
-        c = GetComponent<SpriteRenderer>().material.color;
+        c = GetComponentInParent<SpriteRenderer>().material.color;
     }
 	
 	void Update ()
     {
-		if (time < coolDown)
-        {
-            time += Time.deltaTime;
+        if (!disguised)
+        { 
+		    if (time < coolDown)
+            {
+                time += Time.deltaTime;
+            }
+            else if (Input.GetAxis("Power") > 0)
+            {
+                Disguise();
+                hiddenTime += Time.deltaTime;
+                time = 0;
+            }
         }
-        else if (Input.GetAxis("Power") > 0 && !disguised)
-        {
-            Disguise();
-            hiddenTime += Time.deltaTime;
-            time = 0;
-        }
+        else
+        { 
+            if (hiddenTime <= 5)
+            {
+                hiddenTime += Time.deltaTime;
+            }
+            else 
+            {
+                transform.parent.gameObject.layer = 8;
+                c.a = 1;
+                GetComponentInParent<SpriteRenderer>().material.color = c;
+                disguised = false;
 
-        if (hiddenTime <= 5 && disguised)
-        {
-            hiddenTime += Time.deltaTime;
-        }
-        else 
-        {
-            transform.parent.gameObject.tag = "Player";
-            c.a = 255;
-            disguised = false;
-
+            }
         }
     }
 
@@ -49,9 +55,9 @@ public class Trojan : MonoBehaviour
     {
         hiddenTime = 0;
         disguised = true;
-        transform.parent.gameObject.tag = "Undetectable";
-        c.a = 150;
-        GetComponent<SpriteRenderer>().material.color = c;
+        transform.parent.gameObject.layer = 0;
+        c.a = 0.30f;
+        GetComponentInParent<SpriteRenderer>().material.color = c;
     }
 
    // IEnumerator DisguiseC()

@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
         if (direction != Vector2.zero)
         {
 
-            rb.velocity = direction * speed * Time.fixedDeltaTime;
+            rb.velocity = direction.normalized * speed * Time.fixedDeltaTime;
             an.SetBool("Moving", true);
             if (shootingDir == Vector2.zero)
             {

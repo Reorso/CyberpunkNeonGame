@@ -31,7 +31,7 @@ public class RedCode : MonoBehaviour
 
     void ShootSpecial()
     {
-        GameObject temp = Instantiate(bullet, this.transform);
+        GameObject temp = Instantiate(bullet, transform.parent);
         temp.transform.localPosition = Vector3.zero;
         temp.transform.localRotation = Quaternion.identity;
 

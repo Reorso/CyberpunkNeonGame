@@ -23,16 +23,16 @@ public class Enemy : MonoBehaviour {
 
         //target = GameObject.FindGameObjectWithTag("Player").transform;
         //transform.up = path[currStep].position - transform.position;
-        //rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
 
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        //target = GameObject.FindGameObjectWithTag("Player").transform;
 
-        rb = GetComponent<Rigidbody2D>();
+
 
         if (active)
         {
@@ -41,11 +41,12 @@ public class Enemy : MonoBehaviour {
 	}
     void Follow()
     {
+        //if (distance.magnitude < minPlayerRadius && target != null)
 
-        Vector2 distance;
-        distance =  target.position - this.transform.position;
-        if(distance.magnitude < minPlayerRadius)
+        Collider2D[] players = Physics2D.OverlapCircleAll(transform.position, minPlayerRadius, LayerMask.GetMask("Sight"));
+        if (players.Length > 0)
         {
+            Vector2 distance = players[0].transform.position - this.transform.position;
             chasing = true;
             transform.up = distance;
             rb.velocity = transform.up * speed;

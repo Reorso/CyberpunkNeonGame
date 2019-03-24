@@ -406,8 +406,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 4813610873919488}
-  smoothTime: 0.3
-  offset: 5
+  smoothTime: 0.4
+  offset: 6
 --- !u!114 &114563050105676280
 MonoBehaviour:
   m_ObjectHideFlags: 1
