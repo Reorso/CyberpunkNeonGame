@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     Transform tr;
     Animator an;
     SpriteRenderer sr;
+
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody2D>();

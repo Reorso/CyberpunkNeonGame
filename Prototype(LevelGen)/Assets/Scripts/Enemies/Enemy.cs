@@ -18,17 +18,22 @@ public class Enemy : MonoBehaviour {
     public float rotSpeed;
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
 
-        target = GameObject.FindGameObjectWithTag("Player").transform;
-        
+        //target = GameObject.FindGameObjectWithTag("Player").transform;
         //transform.up = path[currStep].position - transform.position;
-        rb = GetComponent<Rigidbody2D>();
+        //rb = GetComponent<Rigidbody2D>();
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
+
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+
+        rb = GetComponent<Rigidbody2D>();
+
         if (active)
         {
             Follow();

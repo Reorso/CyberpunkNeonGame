@@ -41,6 +41,7 @@ public class Trojan : MonoBehaviour
             transform.gameObject.tag = "Player";
             c.a = 255;
             disguised = false;
+
         }
     }
 
