@@ -6,15 +6,17 @@ public class Splitter : MonoBehaviour {
     //public Transform[] path;
 
     public GameObject healthBar;
-    public float health = 5, maxhealth = 5;
+    public float health, maxhealth;
     Rigidbody2D rb;
+
+    public GameObject childrens;
 
     float startTime = 0;
     public float waitFor = 2;
     bool timerStart = false;
 
     public Transform target;
-    bool active = true, chasing = false;
+    bool active = true, chasing = false, attacking = false;
     Vector2 direction;
 
     public float speed, minRadius, minPlayerRadius;
@@ -23,6 +25,7 @@ public class Splitter : MonoBehaviour {
     public Quaternion desiredRot;
     public float rotSpeed;
 
+ 
     // Use this for initialization
     void Start ()
     {
@@ -32,6 +35,7 @@ public class Splitter : MonoBehaviour {
         {
             direction *= -1;
         }
+        health = maxhealth;
 
     }
 	
@@ -48,18 +52,27 @@ public class Splitter : MonoBehaviour {
     {
 
         Collider2D[] players = Physics2D.OverlapCircleAll(transform.position, minPlayerRadius, LayerMask.GetMask("Sight"));
-        if (players.Length > 0)
-        {
-            Vector2 distance = players[0].transform.position - this.transform.position;
-            chasing = true;
-            transform.up = distance;
-            rb.velocity = transform.up * speed;
+        if (!attacking) { 
+            if (players.Length > 0)
+            {
+                Vector2 distance = players[0].transform.position - this.transform.position;
+                chasing = true;
+                rb.velocity = distance.normalized * speed;
+                if(distance.magnitude < minRadius)
+                {
+                    attacking = true;
+                }
+            }
+            else
+            {
+                rb.velocity = direction.normalized * speed;
+            }
         }
         else
         {
-            rb.velocity = direction.normalized * speed;
+            
+            GetComponent<Animator>().SetBool("attacking", true);
         }
-        
         //else 
         //{
         //    transform.up = path[currStep].position - transform.position;
@@ -105,6 +118,10 @@ public class Splitter : MonoBehaviour {
     {
         if (health <= 1)
         {
+            if (maxhealth > 1) { 
+                Instantiate(childrens, transform.position, Quaternion.identity);
+                Instantiate(childrens, transform.position, Quaternion.identity);
+            }
             Destroy(this.gameObject);
         }
         else

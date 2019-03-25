@@ -16,7 +16,8 @@ public class CameraScript : MonoBehaviour {
         shootingDir.x = Input.GetAxisRaw("ShootingHorizontal");
         shootingDir.y = Input.GetAxisRaw("ShootingVertical");
         shootingDir = (shootingDir + direction).normalized * offset;
-        desiredPos = target.position + shootingDir / 2;
+        if(target != null)
+            desiredPos = target.position + shootingDir / 2;
         desiredPos.z = -10;
 
         //mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;

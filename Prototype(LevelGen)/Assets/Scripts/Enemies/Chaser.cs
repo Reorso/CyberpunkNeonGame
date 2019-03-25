@@ -81,89 +81,44 @@ public class Chaser : MonoBehaviour {
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Bullet"))
-        {
-            if (health <= 1)
-            {
-                Destroy(this.gameObject);
-            }
-            else
-            {
-                healthBar.SetActive(true);
-                health--;
-                Vector3 scale = healthBar.transform.localScale;
-                scale.x *= (health / maxhealth);
-                healthBar.transform.localScale = scale;
-                minPlayerRadius = 100;
-            }
-        }
 
-        if (other.CompareTag("TrojanBullet"))
-        {
-            if (health <= 1)
-            {
-                Destroy(this.gameObject);
-            }
-            else
-            {
-                healthBar.SetActive(true);
-                health -= 1.5f;
-                Vector3 scale = healthBar.transform.localScale;
-                scale.x *= (health / maxhealth);
-                healthBar.transform.localScale = scale;
-                minPlayerRadius = 100;
-            }
-        }
 
-        if (other.CompareTag("WormBullet"))
+        switch (other.tag)
         {
-            if (health <= 1)
-            {
-                Destroy(this.gameObject);
-            }
-            else
-            {
-                healthBar.SetActive(true);
-                health -= 0.5f;
-                Vector3 scale = healthBar.transform.localScale;
-                scale.x *= (health / maxhealth);
-                healthBar.transform.localScale = scale;
-                minPlayerRadius = 100;
-            }
+            case "Bullet":
+                Damage(1);
+                break;
+            case "TrojanBullet":
+                Damage(1.5f);
+                break;
+            case "WormBullet":
+                Damage(0.5f);
+                break;
+            case "BackdoorBullet":
+                Damage(2);
+                break;
+            case "FisherBullet":
+                Damage(1);
+                break;
+            default:
+                break;
         }
+    }
 
-        if (other.CompareTag("BackdoorBullet"))
+    void Damage(float amount)
+    {
+        if (health <= 1)
         {
-            if (health <= 1)
-            {
-                Destroy(this.gameObject);
-            }
-            else
-            {
-                healthBar.SetActive(true);
-                health -= 2f;
-                Vector3 scale = healthBar.transform.localScale;
-                scale.x *= (health / maxhealth);
-                healthBar.transform.localScale = scale;
-                minPlayerRadius = 100;
-            }
+            Destroy(this.gameObject);
         }
-
-        if (other.CompareTag("FisherBullet"))
+        else
         {
-            if (health <= 1)
-            {
-                Destroy(this.gameObject);
-            }
-            else
-            {
-                healthBar.SetActive(true);
-                health--;
-                Vector3 scale = healthBar.transform.localScale;
-                scale.x *= (health / maxhealth);
-                healthBar.transform.localScale = scale;
-                minPlayerRadius = 100;
-            }
+            healthBar.SetActive(true);
+            health -= amount;
+            Vector3 scale = healthBar.transform.localScale;
+            scale.x *= (health / maxhealth);
+            healthBar.transform.localScale = scale;
+            minPlayerRadius = 100;
         }
     }
 
