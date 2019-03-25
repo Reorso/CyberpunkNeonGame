@@ -7,6 +7,7 @@ public class RedCodeBullet : MonoBehaviour {
     public float speed;
     public Vector2 initialpos;
     public float maxDist;
+    public RedCode parent;
 
     // Use this for initialization
     void Start()
@@ -25,14 +26,16 @@ public class RedCodeBullet : MonoBehaviour {
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        
+        if (collision.gameObject.CompareTag("Finish"))
+        {
+            Destroy(collision.gameObject);
+            parent.AddClone(transform.position);
+        }
         if (!collision.CompareTag("Player"))
         {
             print("hit");
             Destroy(this.gameObject);
-        }
-        if (collision.gameObject.CompareTag("Finish"))
-        {
-            GetComponentInParent<RedCode>().AddClone(transform.position);
         }
     }
     //private void OnCollisionEnter2D(Collision2D collision)

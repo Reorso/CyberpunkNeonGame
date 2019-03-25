@@ -420,7 +420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 1011838889427088, guid: a0c166f11ebeab84680b324625d8cd17, type: 2}
-  clone: {fileID: 1561893681953928, guid: 0cde1608e39ff384380ff6625e9669a2, type: 2}
+  clone: {fileID: 1218881210639942, guid: 0cde1608e39ff384380ff6625e9669a2, type: 2}
   coolDown: 3
 --- !u!114 &114985113427650324
 MonoBehaviour:

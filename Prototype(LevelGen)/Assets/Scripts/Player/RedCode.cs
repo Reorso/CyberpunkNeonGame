@@ -12,6 +12,7 @@ public class RedCode : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+        clones = new List<GameObject>();
         time = 0;		
 	}
 	
@@ -34,11 +35,20 @@ public class RedCode : MonoBehaviour
         GameObject temp = Instantiate(bullet, transform.parent);
         temp.transform.localPosition = Vector3.zero;
         temp.transform.localRotation = this.transform.localRotation;
+        temp.GetComponent<RedCodeBullet>().parent = this;
     }
 
     public void AddClone(Vector3 pos)
     {
-        clones.Add(Instantiate(clone, pos, Quaternion.identity));
+        GameObject temp = Instantiate(clone, pos, Quaternion.identity);
+        clones.Add(temp);
+        temp.GetComponentInChildren<CloneMovement>().origin = this;
+        temp.GetComponentInChildren<CloneMovement>().main = transform.parent;
+    }
+
+    public void RemoveClone(GameObject t)
+    {
+        clones.Remove(t);
     }
 }
 

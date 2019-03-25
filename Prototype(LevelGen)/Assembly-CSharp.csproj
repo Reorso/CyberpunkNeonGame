@@ -75,7 +75,9 @@
     <Compile Include="Assets\Scripts\Camera\CameraScript.cs" />
     <Compile Include="Assets\Scripts\Doors\Doors.cs" />
     <Compile Include="Assets\Scripts\Doors\Exit.cs" />
-    <Compile Include="Assets\Scripts\Enemies\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Enemies\Chaser.cs" />
+    <Compile Include="Assets\Scripts\Enemies\Sniper.cs" />
+    <Compile Include="Assets\Scripts\Enemies\Splitter.cs" />
     <Compile Include="Assets\Scripts\FieldOfView\FieldOfView.cs" />
     <Compile Include="Assets\Scripts\Gen\BoardCreator.cs" />
     <Compile Include="Assets\Scripts\Gen\Corridor.cs" />

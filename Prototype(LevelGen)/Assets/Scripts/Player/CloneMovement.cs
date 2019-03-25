@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class CloneMovement : MonoBehaviour
 {
+    public RedCode origin;
+    public Transform main;
+
     bool cd = false;
     public float startTime = 0;
+    public float distance;
+    private Vector2 randomposition;
+
     int health;
-    public int maxhealth = 6;
+    public int maxhealth = 2;
+
     public GameObject healthBar;
     public Transform arm;
+
     public float speed = 5;
     public Vector2 direction, rot, shootingDir;
     private bool facingRight;
@@ -19,6 +27,7 @@ public class CloneMovement : MonoBehaviour
     Transform tr;
     Animator an;
     SpriteRenderer sr;
+
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
@@ -26,6 +35,7 @@ public class CloneMovement : MonoBehaviour
         an = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         health = maxhealth;
+        randomposition = Random.insideUnitCircle.normalized;
     }
 
     // Update is called once per frame
@@ -37,14 +47,16 @@ public class CloneMovement : MonoBehaviour
                 startTime = 0;
             }
         }
-        direction.x = Input.GetAxis("Horizontal");
-        direction.y = Input.GetAxis("Vertical");
+        if(main != null) { 
+            direction = main.position - transform.position;
+            direction += randomposition;
+        }
         shootingDir.x = Input.GetAxis("ShootingHorizontal");
         shootingDir.y = Input.GetAxis("ShootingVertical");
 
         if (direction != Vector2.zero) {
 
-            rb.velocity = direction * speed * Time.fixedDeltaTime;
+            rb.velocity = direction.normalized * speed * Time.fixedDeltaTime;
             an.SetBool("Moving",true);
             if(shootingDir == Vector2.zero) { 
                 an.SetFloat("Horizontal", direction.x);
@@ -88,7 +100,7 @@ public class CloneMovement : MonoBehaviour
     }
     void Flip(bool state)
     {
-        sr.flipX = state;
+        //sr.flipX = state;
         if(facingRight != state)
         {
             arm.localPosition = new Vector3(-arm.localPosition.x, arm.localPosition.y);
@@ -98,7 +110,6 @@ public class CloneMovement : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D other)
     {
-
         if (other.gameObject.CompareTag("Finish"))
         {
 
@@ -121,6 +132,7 @@ public class CloneMovement : MonoBehaviour
     }
     void Loose()
     {
-        Destroy(this.gameObject);
+        origin.RemoveClone(gameObject);
+        Destroy(gameObject.transform.parent.parent);
     }
 }
