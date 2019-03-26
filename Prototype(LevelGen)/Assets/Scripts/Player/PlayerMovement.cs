@@ -25,8 +25,8 @@ public class PlayerMovement : MonoBehaviour
         tr = GetComponent<Transform>();
         an = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
-        loosePanel = GameObject.FindGameObjectsWithTag("loosePanel")[0];
-        loosePanel.SetActive(false);
+        //loosePanel = GameObject.FindGameObjectsWithTag("loosePanel")[0];
+        //loosePanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -42,6 +42,27 @@ public class PlayerMovement : MonoBehaviour
         direction.y = Input.GetAxis("Vertical");
         shootingDir.x = Input.GetAxis("ShootingHorizontal");
         shootingDir.y = Input.GetAxis("ShootingVertical");
+
+
+        if (shootingDir != Vector2.zero)
+        {
+            arm.up = shootingDir;
+        }
+        else
+        {
+            arm.up = direction;
+        }
+
+
+        if (arm.localRotation.eulerAngles.z - 180 < 0)
+        {
+            Flip(true);
+        }
+        else
+        {
+            Flip(false);
+        }
+
 
         if (direction != Vector2.zero)
         {
@@ -69,23 +90,7 @@ public class PlayerMovement : MonoBehaviour
         //  mpos.x - arm.position.x, 
         //  mpos.y - arm.position.y
         // );
-        if (shootingDir != Vector2.zero)
-        {
-            arm.up = shootingDir;
-        }
-        else
-        {
-            arm.up = direction;
-        }
 
-
-        if (arm.localRotation.eulerAngles.z - 180 < 0) {
-            Flip(true);
-        }
-        else
-        {
-            Flip(false);
-        }
 
     }
     void Flip(bool state)

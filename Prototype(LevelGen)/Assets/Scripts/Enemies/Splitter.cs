@@ -119,10 +119,10 @@ public class Splitter : MonoBehaviour {
         if (health <= 1)
         {
             if (maxhealth > 1) { 
-                Instantiate(childrens, transform.position, Quaternion.identity);
-                Instantiate(childrens, transform.position, Quaternion.identity);
+                Instantiate(childrens, transform.position, Quaternion.identity, transform.parent.parent);
+                Instantiate(childrens, transform.position + new Vector3(0.1f,0.1f,0), Quaternion.identity, transform.parent.parent);
             }
-            Destroy(this.gameObject);
+            Destroy(transform.parent.gameObject);
         }
         else
         {

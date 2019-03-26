@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Exit : MonoBehaviour {
-
+    public GameObject winscreen;
 	// Use this for initialization
 	void Start () {
 		
@@ -23,5 +23,6 @@ public class Exit : MonoBehaviour {
     void Win()
     {
         print("Victory!");
+        winscreen.SetActive(true);
     }
 }

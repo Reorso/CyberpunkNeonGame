@@ -133,6 +133,6 @@ public class CloneMovement : MonoBehaviour
     void Loose()
     {
         origin.RemoveClone(gameObject);
-        Destroy(gameObject.transform.parent.parent);
+        Destroy(gameObject.transform.parent.gameObject);
     }
 }

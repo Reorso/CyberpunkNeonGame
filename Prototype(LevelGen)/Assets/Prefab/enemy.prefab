@@ -176,7 +176,7 @@ MonoBehaviour:
   startTime: 0
   waitFor: 2
   target: {fileID: 0}
-  speed: 2
+  speed: 4
   minRadius: 1
   minPlayerRadius: 5
   health: 5

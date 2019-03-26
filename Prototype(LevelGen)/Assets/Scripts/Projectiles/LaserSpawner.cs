@@ -34,7 +34,7 @@ public class LaserSpawner : MonoBehaviour {
 
         temp = Instantiate(laserP);
         temp.transform.position = transform.position;
-        temp.transform.rotation = transform.rotation;
+        temp.transform.up = shootingDir;
 
     }
 }

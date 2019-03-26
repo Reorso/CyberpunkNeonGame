@@ -11,6 +11,9 @@ TagManager:
   - WormBullet
   - FisherBullet
   - BackdoorBullet
+  - Door
+  - KeyDoor
+  - Key
   layers:
   - Default
   - TransparentFX
