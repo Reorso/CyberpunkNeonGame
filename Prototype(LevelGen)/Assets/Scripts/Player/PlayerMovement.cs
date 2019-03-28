@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public GameObject healthbarPlayer;
     public GameObject loosePanel;
     bool cd = false;
     public float startTime = 0;
-    int health = 6, maxhealth = 6;
+    float health = 6, maxhealth = 6;
     public GameObject healthBar;
     public Transform arm;
     public float speed = 5;
@@ -115,12 +116,20 @@ public class PlayerMovement : MonoBehaviour
             }
             else if(!cd)
             {
-                healthBar.SetActive(true);
                 health--;
+
+                //healthBar.SetActive(true);
+                //print(health);
+                //Vector3 scale = healthBar.transform.localScale;
+                //scale.x *= (health / maxhealth);
+                //healthBar.transform.localScale = scale;
+
                 print(health);
-                Vector3 scale = healthBar.transform.localScale;
+                Vector3 scale = healthbarPlayer.transform.localScale;
                 scale.x *= (health / maxhealth);
-                healthBar.transform.localScale = scale;
+                print(health/maxhealth +""+ health +""+ maxhealth);
+                healthbarPlayer.transform.localScale = scale;
+
                 cd = true;
                 startTime = Time.time;
             }

@@ -65,7 +65,12 @@ public class Splitter : MonoBehaviour {
             }
             else
             {
+                if (rb.velocity.magnitude < 0.3f)
+                {
+                    direction = Random.insideUnitCircle.normalized * speed;
+                }
                 rb.velocity = direction.normalized * speed;
+
             }
         }
         else

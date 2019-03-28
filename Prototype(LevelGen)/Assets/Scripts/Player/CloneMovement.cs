@@ -54,7 +54,7 @@ public class CloneMovement : MonoBehaviour
         shootingDir.x = Input.GetAxis("ShootingHorizontal");
         shootingDir.y = Input.GetAxis("ShootingVertical");
 
-        if (direction != Vector2.zero) {
+        if (direction.magnitude > 1) {
 
             rb.velocity = direction.normalized * speed * Time.fixedDeltaTime;
             an.SetBool("Moving",true);
@@ -113,7 +113,7 @@ public class CloneMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Finish"))
         {
 
-            if (health <= 1)
+            if (health <= 0)
             {
                 Loose();
             }
@@ -129,6 +129,11 @@ public class CloneMovement : MonoBehaviour
                 startTime = Time.time;
             }
         }
+        if (other.gameObject.tag == "Player")
+        {
+            Physics2D.IgnoreCollision(other.collider, GetComponent<Collider2D>());
+        }
+
     }
     void Loose()
     {
