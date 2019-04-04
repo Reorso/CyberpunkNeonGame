@@ -98,6 +98,7 @@
     <Compile Include="Assets\Scripts\Projectiles\LaserP.cs" />
     <Compile Include="Assets\Scripts\Projectiles\LaserSpawner.cs" />
     <Compile Include="Assets\Scripts\Projectiles\RedCodeBullet.cs" />
+    <Compile Include="Assets\Scripts\UsbKey.cs" />
     <None Include="Assets\Fonts\OFL.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/reors/Documents/GitHub/CyberpunkNeonGame/Prototype(LevelGen)/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

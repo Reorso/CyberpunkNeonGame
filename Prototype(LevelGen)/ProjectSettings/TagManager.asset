@@ -16,6 +16,7 @@ TagManager:
   - Key
   - BossDoor
   - Collectible
+  - Room
   layers:
   - Default
   - TransparentFX

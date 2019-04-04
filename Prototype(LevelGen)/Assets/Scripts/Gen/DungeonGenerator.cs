@@ -99,7 +99,24 @@ public class DungeonGenerator : MonoBehaviour
                 }
             }
         }
+        ConnectDoors();
         //RoomGenerator.ClearData ();
+    }
+
+    void ConnectDoors()
+    {
+        foreach (Room room in Rooms)
+        {
+            if (room.IsVisible == true)
+            {
+                foreach(RoomConnection rc in room.Connections)
+                {
+                    room.door.GetComponent<Door>().AddDestination(rc.Room.door.GetComponent<Door>());
+                    rc.Room.door.GetComponent<Door>().AddDestination(room.door.GetComponent<Door>());
+                    print("room"+room.ID+"connected to door "+rc.Room.ID + "and viceversa");
+                }
+            }
+        }
     }
 
     void Update()
@@ -178,8 +195,6 @@ public class DungeonGenerator : MonoBehaviour
 
                     Vector2 p0 = Rooms[n].Connections[m].Line1.p0.Value;
                     Vector2 p1 = Rooms[n].Connections[m].Line1.p1.Value;
-                    Vector2 p2 = Rooms[n].Connections[m].Line2.p0.Value;
-                    Vector2 p3 = Rooms[n].Connections[m].Line2.p1.Value;
 
                     //flip values if line is going in opposite direction
                     if ((int)p0.x > (int)p1.x || (int)p0.y > (int)p1.y)
@@ -187,21 +202,15 @@ public class DungeonGenerator : MonoBehaviour
                         p0 = Rooms[n].Connections[m].Line1.p1.Value;
                         p1 = Rooms[n].Connections[m].Line1.p0.Value;
                     }
-                    if ((int)p2.x > (int)p3.x || (int)p2.y > (int)p3.y)
-                    {
-                        p3 = Rooms[n].Connections[m].Line2.p0.Value;
-                        p2 = Rooms[n].Connections[m].Line2.p1.Value;
-                    }
+                   
 
                     //Adjust lines to grid coordinates
                     p0 = new Vector2(p0.x - RoomGenerator.XMin, p0.y - RoomGenerator.YMin);
                     p1 = new Vector2(p1.x - RoomGenerator.XMin, p1.y - RoomGenerator.YMin);
-                    p2 = new Vector2(p2.x - RoomGenerator.XMin, p2.y - RoomGenerator.YMin);
-                    p3 = new Vector2(p3.x - RoomGenerator.XMin, p3.y - RoomGenerator.YMin);
+                    
 
                     //Create the hallways in our grid
                     AddHallway(p0, p1);
-                    AddHallway(p2, p3);
                 }
             }
         }
@@ -328,22 +337,6 @@ public class DungeonGenerator : MonoBehaviour
                     }
                     p0 = new Vector2(p0.x - RoomGenerator.XMin, p0.y - RoomGenerator.YMin);
                     p1 = new Vector2(p1.x - RoomGenerator.XMin, p1.y - RoomGenerator.YMin);
-
-                    AddDoor(p0, p1);
-
-                    //Line 2
-                    p0 = Rooms[n].Connections[m].Line2.p0.Value;
-                    p1 = Rooms[n].Connections[m].Line2.p1.Value;
-
-                    if ((int)p0.x > (int)p1.x || (int)p0.y > (int)p1.y)
-                    {
-                        p1 = Rooms[n].Connections[m].Line2.p0.Value;
-                        p0 = Rooms[n].Connections[m].Line2.p1.Value;
-                    }
-                    p0 = new Vector2(p0.x - RoomGenerator.XMin, p0.y - RoomGenerator.YMin);
-                    p1 = new Vector2(p1.x - RoomGenerator.XMin, p1.y - RoomGenerator.YMin);
-
-                    AddDoor(p0, p1);
                 }
             }
         }

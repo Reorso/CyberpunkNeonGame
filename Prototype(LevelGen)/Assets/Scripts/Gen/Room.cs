@@ -84,6 +84,16 @@ public class Room : MonoBehaviour
         private set;
     }
 
+    public List<Door> Doors
+    {
+        get;
+        private set;
+    }
+    public GameObject door
+    {
+        get;
+        private set;
+    }
     void Awake()
     {
         Background = GetComponent<SpriteRenderer>();
@@ -184,7 +194,15 @@ public class Room : MonoBehaviour
         room.transform.parent = this.transform;
         LevelGenerator lv = room.AddComponent(typeof(LevelGenerator)) as LevelGenerator;
         lv.Generate(width, height, centre);
+        GenerateDoors();
         IsLocked = true;
         GetComponent<SpriteRenderer>().enabled = false;
+    }
+
+    void GenerateDoors()
+    {
+        door = Instantiate(Resources.Load("Door") as GameObject);
+        door.transform.parent = this.transform;
+        door.transform.localPosition = Vector3.zero;
     }
 }

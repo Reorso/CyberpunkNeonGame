@@ -367,7 +367,7 @@ public class RoomGenerator : MonoBehaviour
 
         GameObject.Destroy(LinesContainer);
         GameObject.Destroy(RoomsContainer);
+
+
     }
 }
-
-

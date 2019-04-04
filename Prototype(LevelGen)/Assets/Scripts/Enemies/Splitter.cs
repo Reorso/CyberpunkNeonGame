@@ -53,29 +53,28 @@ public class Splitter : MonoBehaviour {
 
         Collider2D[] players = Physics2D.OverlapCircleAll(transform.position, minPlayerRadius, LayerMask.GetMask("Sight"));
         if (!attacking) { 
-            if (players.Length > 0)
+            //if (players.Length > 0)
+            //{
+            //    Vector2 distance = players[0].transform.position - this.transform.position;
+            //    chasing = true;
+            //    rb.velocity = distance.normalized * speed;
+            //    if(distance.magnitude < minRadius)
+            //    {
+            //        attacking = true;
+            //    }
+            //}
+            //else
+            //{
+            if (rb.velocity.magnitude < 0.3f)
             {
-                Vector2 distance = players[0].transform.position - this.transform.position;
-                chasing = true;
-                rb.velocity = distance.normalized * speed;
-                if(distance.magnitude < minRadius)
-                {
-                    attacking = true;
-                }
+                direction = Random.insideUnitCircle.normalized * speed;
             }
-            else
-            {
-                if (rb.velocity.magnitude < 0.3f)
-                {
-                    direction = Random.insideUnitCircle.normalized * speed;
-                }
-                rb.velocity = direction.normalized * speed;
+            rb.velocity = direction.normalized * speed;
 
-            }
+            //}
         }
         else
         {
-            
             GetComponent<Animator>().SetBool("attacking", true);
         }
         //else 

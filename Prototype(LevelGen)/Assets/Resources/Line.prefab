@@ -55,7 +55,7 @@ LineRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 9ed2f31941b92584bb4b0024663d23c2, type: 2}
+  - {fileID: 2100000, guid: 41f8d279b0aab1c4bbbcba107ae95141, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,8 +85,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 1
+        time: 0.022026062
+        value: 0.7294693
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -95,7 +95,7 @@ LineRenderer:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 1
+        value: 0.7246368
         inSlope: 0
         outSlope: 0
         tangentMode: 0

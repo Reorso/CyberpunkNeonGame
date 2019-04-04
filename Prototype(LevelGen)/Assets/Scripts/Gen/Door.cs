@@ -2,35 +2,64 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door{
+public class Door : MonoBehaviour{
 
     Vector3 direction;
-    Door destination;
+    List<Door> destinations;
     Vector3 position;
-    Room parent;
+    bool activate = false;
+    Transform player;
 
-    public Door(Room parent, int direction, Door destination)
+    private void Start()
     {
-        this.parent = parent;
-        switch(direction){
-            case 0:
-                this.direction = new Vector3(0,1,0);
-                break;
-            default:
-                break;
-        }
-        this.destination = destination;
+        position = transform.position;
     }
 
-    public void setDirection()
+    public void AddDestination(Door newDest)
     {
-        if(direction.x == 0)
-        {
-            position = direction * (int)((parent.TopLeft.y - parent.BottomRight.y) / 2);
+        if(destinations != null) {
+            if (!destinations.Contains(newDest))
+                destinations.Add(newDest);
         }
         else
         {
-            position = direction * (int)((parent.BottomRight.x - parent.TopLeft.x) / 2);
+            destinations = new List<Door>();
+            destinations.Add(newDest);
+        }
+
+    }
+
+    private void Update()
+    {
+        if (activate)
+        {
+            if (Input.GetAxis("Door") > 0.1)
+            {
+                Teleport();
+            }
+        }
+    }
+
+    public void Teleport()
+    {
+        player.position = destinations[(int)Random.Range(0, destinations.Count)].position;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            activate = true;
+            player = collision.transform;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            activate = false;
+            player = null;
         }
     }
 }
+
