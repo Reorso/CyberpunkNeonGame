@@ -53,7 +53,7 @@ public class Sniper : MonoBehaviour {
         }
         else
         {
-            if (startTime > new IntRange(2,5).Random)
+            if (startTime > Random.Range(2,5))
             {
                 //Do something
                 rb.velocity = Vector3.zero;

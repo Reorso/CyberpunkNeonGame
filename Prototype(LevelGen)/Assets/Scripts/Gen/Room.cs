@@ -1,76 +1,190 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
-public class Room
+public class Room : MonoBehaviour
 {
-    public int xPos;                      // The x coordinate of the lower left tile of the room.
-    public int yPos;                      // The y coordinate of the lower left tile of the room.
-    public int roomWidth;                     // How many tiles wide the room is.
-    public int roomHeight;                    // How many tiles high the room is.
-    public Direction enteringCorridor;    // The direction of the corridor that is entering this room.
-
-
-    // This is used for the first room.  It does not have a Corridor parameter since there are no corridors yet.
-    public void SetupRoom(IntRange widthRange, IntRange heightRange, int columns, int rows)
+    //public List<Door> Doors
+    //{
+    //    get;
+    //    set;
+    //}
+    public int ID
     {
-        // Set a random width and height.
-        roomWidth = widthRange.Random;
-        roomHeight = heightRange.Random;
-
-        // Set the x and y coordinates so the room is roughly in the middle of the board.
-        xPos = Mathf.RoundToInt(columns / 2f - roomWidth / 2f);
-        yPos = Mathf.RoundToInt(rows / 2f - roomHeight / 2f);
+        get;
+        private set;
+    }
+    public bool IsMainRoom
+    {
+        get;
+        private set;
+    }
+    public bool IsVisible
+    {
+        get;
+        private set;
+    }
+    public bool IsLocked
+    {
+        get;
+        private set;
+    }
+    public bool IsSleeping
+    {
+        get
+        {
+            return RigidBody2D.IsSleeping();
+        }
+    }
+    public bool IsStartRoom
+    {
+        get;
+        private set;
+    }
+    public bool IsEndRoom
+    {
+        get;
+        private set;
     }
 
-
-    // This is an overload of the SetupRoom function and has a corridor parameter that represents the corridor entering the room.
-    public void SetupRoom(IntRange widthRange, IntRange heightRange, int columns, int rows, Corridor corridor)
+    public Vector3 Center
     {
-        // Set the entering corridor direction.
-        enteringCorridor = corridor.direction;
-
-        // Set random values for width and height.
-        roomWidth = widthRange.Random;
-        roomHeight = heightRange.Random;
-
-        switch (corridor.direction)
+        get
         {
-            // If the corridor entering this room is going north...
-            case Direction.North:
-                // ... the height of the room mustn't go beyond the board so it must be clamped based
-                // on the height of the board (rows) and the end of corridor that leads to the room.
-                roomHeight = Mathf.Clamp(roomHeight, 1, rows - corridor.EndPositionY);
-
-                // The y coordinate of the room must be at the end of the corridor (since the corridor leads to the bottom of the room).
-                yPos = corridor.EndPositionY;
-
-                // The x coordinate can be random but the left-most possibility is no further than the width
-                // and the right-most possibility is that the end of the corridor is at the position of the room.
-                xPos = Random.Range(corridor.EndPositionX - roomWidth + 1, corridor.EndPositionX);
-
-                // This must be clamped to ensure that the room doesn't go off the board.
-                xPos = Mathf.Clamp(xPos, 0, columns - roomWidth);
-                break;
-            case Direction.East:
-                roomWidth = Mathf.Clamp(roomWidth, 1, columns - corridor.EndPositionX);
-                xPos = corridor.EndPositionX;
-
-                yPos = Random.Range(corridor.EndPositionY - roomHeight + 1, corridor.EndPositionY);
-                yPos = Mathf.Clamp(yPos, 0, rows - roomHeight);
-                break;
-            case Direction.South:
-                roomHeight = Mathf.Clamp(roomHeight, 1, corridor.EndPositionY);
-                yPos = corridor.EndPositionY - roomHeight + 1;
-
-                xPos = Random.Range(corridor.EndPositionX - roomWidth + 1, corridor.EndPositionX);
-                xPos = Mathf.Clamp(xPos, 0, columns - roomWidth);
-                break;
-            case Direction.West:
-                roomWidth = Mathf.Clamp(roomWidth, 1, corridor.EndPositionX);
-                xPos = corridor.EndPositionX - roomWidth + 1;
-
-                yPos = Random.Range(corridor.EndPositionY - roomHeight + 1, corridor.EndPositionY);
-                yPos = Mathf.Clamp(yPos, 0, rows - roomHeight);
-                break;
+            return transform.position;
         }
+    }
+    public Vector3 TopLeft
+    {
+        get
+        {
+            return new Vector3(transform.position.x - transform.localScale.x / 2f, transform.position.y + transform.localScale.y / 2f);
+        }
+    }
+    public Vector3 BottomRight
+    {
+        get
+        {
+            return new Vector3(transform.position.x + transform.localScale.x / 2f, transform.position.y - transform.localScale.y / 2f);
+        }
+    }
+
+    Color SecondaryColor = new Color(0.8f, 0.8f, 0.8f);
+    Color MainColor = new Color(200f / 255f, 150f / 255f, 65 / 255f);
+    Color DisabledColor = new Color(0.2f, 0.2f, 0.2f, 0.5f);
+
+    Color StartRoomColor = new Color(90 / 255f, 195 / 255f, 90 / 255f);
+    Color EndRoomColor = new Color(195 / 255f, 85 / 255f, 165 / 255f);
+
+    SpriteRenderer Background;
+    Rigidbody2D RigidBody2D;
+
+    public List<RoomConnection> Connections
+    {
+        get;
+        private set;
+    }
+
+    void Awake()
+    {
+        Background = GetComponent<SpriteRenderer>();
+        RigidBody2D = GetComponent<Rigidbody2D>();
+
+        Connections = new List<RoomConnection>();
+
+        IsVisible = true;
+    }
+
+    public void Init(int id, Vector2 position, int width, int height)
+    {
+        ID = id;
+
+        transform.position = position;
+        transform.localScale = new Vector2(width, height);
+
+
+    }
+
+    public void SetMain()
+    {
+        IsMainRoom = true;
+    }
+
+    public void SetLocked(bool locked)
+    {
+        IsLocked = locked;
+    }
+
+    public void SetVisible(bool visible)
+    {
+        IsVisible = visible;
+    }
+
+    public void SetStartRoom()
+    {
+        IsStartRoom = true;
+    }
+
+    public void SetEndRoom()
+    {
+        IsEndRoom = true;
+    }
+
+    public void AddRoomConnection(RoomConnection connection)
+    {
+        if (!Connections.Contains(connection))
+        {
+            Connections.Add(connection);
+        }
+    }
+
+    public void Snap()
+    {
+        int x = Mathf.CeilToInt(transform.position.x);
+        int y = Mathf.FloorToInt(transform.position.y);
+
+        transform.position = new Vector2(x, y);
+    }
+
+    void FixedUpdate()
+    {
+        if (!IsLocked)
+        {
+            Snap();
+        }
+    }
+
+    void Update()
+    {
+        if (IsVisible)
+        {
+            if (IsMainRoom)
+            {
+                if (IsStartRoom)
+                    Background.color = StartRoomColor;
+                else if (IsEndRoom)
+                    Background.color = EndRoomColor;
+                else
+                    Background.color = MainColor;
+            }
+            else
+                Background.color = SecondaryColor;
+        }
+        else
+        {
+            Background.color = DisabledColor;
+        }
+    }
+
+    public void GenerateLocalRoom(int width, int height, Vector2 centre)
+    {
+        GetComponent<Collider2D>().isTrigger = true;
+        GameObject room = new GameObject("room" + ID);
+        room.transform.position = transform.position;
+        room.transform.rotation = Quaternion.identity;
+        room.transform.parent = this.transform;
+        LevelGenerator lv = room.AddComponent(typeof(LevelGenerator)) as LevelGenerator;
+        lv.Generate(width, height, centre);
+        IsLocked = true;
+        GetComponent<SpriteRenderer>().enabled = false;
     }
 }
