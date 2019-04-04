@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class KeyDoor : MonoBehaviour {
     int keycount = 0;
+    int collectiblesTaken = 0;
 	// Use this for initialization
 	void Start () {
 		
@@ -27,6 +28,25 @@ public class KeyDoor : MonoBehaviour {
             if(keycount > 0)
             {
                 keycount--;
+                Destroy(collision.gameObject);
+            }
+        }
+
+        if (collision.CompareTag("Door"))
+        {
+            Destroy(collision.gameObject);
+        }
+
+        if (collision.CompareTag("Collectible"))
+        {
+            collectiblesTaken++;
+            Destroy(collision.gameObject);
+        }
+
+        if (collision.CompareTag("BossDoor"))
+        {
+            if (collectiblesTaken >= 5)
+            {
                 Destroy(collision.gameObject);
             }
         }
