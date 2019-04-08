@@ -26,7 +26,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1121532616835706
 GameObject:
   m_ObjectHideFlags: 1
@@ -69,7 +69,7 @@ GameObject:
   - component: {fileID: 20235665173090500}
   - component: {fileID: 81810725866719674}
   - component: {fileID: 114488177242161346}
-  - component: {fileID: 114032103802362646}
+  - component: {fileID: 114341255574916792}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -124,8 +124,6 @@ GameObject:
   - component: {fileID: 114302088394240960}
   - component: {fileID: 50216466061374408}
   - component: {fileID: 70503909848944002}
-  - component: {fileID: 114375484746859360}
-  - component: {fileID: 114197338089490294}
   m_Layer: 8
   m_Name: sprite sheet walking_0
   m_TagString: Player
@@ -254,7 +252,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -330,36 +328,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114032103802362646
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1423266607074108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AssetsPPU: 64
-  m_RefResolutionX: 1600
-  m_RefResolutionY: 900
-  m_UpscaleRT: 0
-  m_PixelSnapping: 0
-  m_CropFrameX: 0
-  m_CropFrameY: 0
-  m_StretchFill: 0
---- !u!114 &114197338089490294
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1637305017719108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a024bf17480a6740bdd34595981cba2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114253967653499444
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -407,26 +375,25 @@ MonoBehaviour:
   trojanBullet: {fileID: 1011838889427088, guid: c4b148926d00836449677f921a526138,
     type: 2}
   coolDown: 4
---- !u!114 &114375484746859360
+--- !u!114 &114341255574916792
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1637305017719108}
-  m_Enabled: 1
+  m_GameObject: {fileID: 1423266607074108}
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6176344493756d4e82a69a0fc4387f5, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shifterC:
-  - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 0, g: 1, b: 0.0802474, a: 1}
-  - {r: 0.52596474, g: 0, b: 1, a: 1}
-  - {r: 0, g: 1, b: 0.99077415, a: 1}
-  shifterS:
-  - {fileID: 21300000, guid: ec0c73b837994954aabccc80e8678eac, type: 3}
-  - {fileID: 21300000, guid: f6446fe9678196e46ad010b73e7acf36, type: 3}
-  skill: 0
+  m_AssetsPPU: 100
+  m_RefResolutionX: 256
+  m_RefResolutionY: 144
+  m_UpscaleRT: 0
+  m_PixelSnapping: 0
+  m_CropFrameX: 0
+  m_CropFrameY: 0
+  m_StretchFill: 0
 --- !u!114 &114488177242161346
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -545,8 +512,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 388252777
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ec0c73b837994954aabccc80e8678eac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

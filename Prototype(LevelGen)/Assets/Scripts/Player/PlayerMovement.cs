@@ -26,12 +26,14 @@ public class PlayerMovement : MonoBehaviour
         tr = GetComponent<Transform>();
         an = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+        healthbarPlayer = GameObject.Find("Healthbar");
         //loosePanel = GameObject.FindGameObjectsWithTag("loosePanel")[0];
         //loosePanel.SetActive(false);
     }
 
     // Update is called once per frame
     void FixedUpdate() {
+        sr.flipX = false;
         if (cd)
         {
             if (startTime - Time.time <= -2) {
@@ -84,6 +86,10 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            if (arm.localRotation.eulerAngles.z - 180 < 0)
+            {
+                sr.flipX = true;
+            }
             an.SetBool("Moving", false);
         }
         //mpos = Camera.main.ScreenToWorldPoint(Input.mousePosition);       
@@ -110,31 +116,48 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Finish"))
         {
 
-            if (health <= 1)
-            {
-                Loose();
-            }
-            else if(!cd)
-            {
-                health--;
-
-                //healthBar.SetActive(true);
-                //print(health);
-                //Vector3 scale = healthBar.transform.localScale;
-                //scale.x *= (health / maxhealth);
-                //healthBar.transform.localScale = scale;
-
-                print(health);
-                Vector3 scale = healthbarPlayer.transform.localScale;
-                scale.x *= (health / maxhealth);
-                print(health/maxhealth +""+ health +""+ maxhealth);
-                healthbarPlayer.transform.localScale = scale;
-
-                cd = true;
-                startTime = Time.time;
-            }
+            damage();
+            
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            damage();
+        }
+
+
+    }
+
+    void damage()
+    {
+        if (health <= 1)
+        {
+            Loose();
+        }
+        else if (!cd)
+        {
+            health--;
+
+            //healthBar.SetActive(true);
+            //print(health);
+            //Vector3 scale = healthBar.transform.localScale;
+            //scale.x *= (health / maxhealth);
+            //healthBar.transform.localScale = scale;
+
+            print(health);
+            Vector3 scale = healthbarPlayer.transform.localScale;
+            scale.x *= (health / maxhealth);
+            print(health / maxhealth + "" + health + "" + maxhealth);
+            healthbarPlayer.transform.localScale = scale;
+
+            cd = true;
+            startTime = Time.time;
+        }
+    }
+
     void Loose()
     {
         Destroy(this.gameObject);

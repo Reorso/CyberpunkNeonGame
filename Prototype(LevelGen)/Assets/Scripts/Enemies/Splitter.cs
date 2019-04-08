@@ -29,7 +29,7 @@ public class Splitter : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        direction = new Vector2(1,1);
+        direction = new Vector3(1,1);
         rb = GetComponent<Rigidbody2D>();
         if(Random.value < 0.5)
         {
@@ -65,10 +65,7 @@ public class Splitter : MonoBehaviour {
             //}
             //else
             //{
-            if (rb.velocity.magnitude < 0.3f)
-            {
-                direction = Random.insideUnitCircle.normalized * speed;
-            }
+
             rb.velocity = direction.normalized * speed;
 
             //}
@@ -114,10 +111,12 @@ public class Splitter : MonoBehaviour {
                 break;
         }
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Bounce(collision.GetContact(0).normal);
     }
+
     void Damage(float amount)
     {
         if (health <= 1)
@@ -126,7 +125,7 @@ public class Splitter : MonoBehaviour {
                 Instantiate(childrens, transform.position, Quaternion.identity, transform.parent.parent);
                 Instantiate(childrens, transform.position + new Vector3(0.1f,0.1f,0), Quaternion.identity, transform.parent.parent);
             }
-            Destroy(transform.parent.gameObject);
+            Destroy(transform.gameObject);
         }
         else
         {

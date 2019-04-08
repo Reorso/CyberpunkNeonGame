@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class Sniper : MonoBehaviour {
     //public Transform[] path;
-    public GameObject healthBar;
-    public float startTime = 0;
+    public GameObject healthBar, projectile;
+    public float startTime = 0, jumpTime = 0;
     public float waitFor = 2;
     bool timerStart = false;
-    public Transform target;
-    bool active = true, chasing = false;
-    public float speed, minRadius, minPlayerRadius;
+    Transform target;
+    bool active = true;
+    public float speed, minRadius = 2, minPlayerRadius = 10;
     int currStep = 0;
     Rigidbody2D rb;
     public float health = 5, maxhealth = 5;
     public Quaternion desiredRot;
     public float rotSpeed;
+    public float fireRate = 2;
+    float timeToFire = 0;
+    Vector2 distance;
 
     // Use this for initialization
     void Start ()
@@ -31,9 +34,7 @@ public class Sniper : MonoBehaviour {
     {
 
         //target = GameObject.FindGameObjectWithTag("Player").transform;
-
-
-
+        
         if (active)
         {
             Follow();
@@ -46,13 +47,32 @@ public class Sniper : MonoBehaviour {
         Collider2D[] players = Physics2D.OverlapCircleAll(transform.position, minPlayerRadius, LayerMask.GetMask("Sight"));
         if (players.Length > 0)
         {
-            Vector2 distance = players[0].transform.position - this.transform.position;
-            chasing = true;
+            if(target == null)
+            {
+                target = players[(int)Random.Range(0, players.Length)].transform;
+            }
+
+            distance = players[(int)Random.Range(0, players.Length)].transform.position - this.transform.position;
             transform.up = distance;
-            rb.velocity = transform.up * speed;
+
+            if (distance.magnitude < minRadius)
+            {
+                if(Time.time > jumpTime)
+                {
+                    JumpAway(target.gameObject.transform);
+                    jumpTime = Time.time + 2;
+                }
+
+            }
+            else if (Time.time > timeToFire)
+            {
+                timeToFire = Time.time + 1 / fireRate;
+                Shoot();
+            }
         }
         else
         {
+            target = null;
             if (startTime > Random.Range(2,5))
             {
                 //Do something
@@ -79,91 +99,61 @@ public class Sniper : MonoBehaviour {
         //}
 
     }
+
+    void JumpAway(Transform target)
+    {
+        print("adios amigos");
+        Vector3 position = Random.insideUnitCircle.normalized * minPlayerRadius;
+        this.transform.position = target.position + position;
+    }
+
+    void Shoot()
+    {
+        GameObject temp = Instantiate(projectile, transform.position, transform.rotation);
+        temp.transform.position = transform.position;
+        temp.transform.up = this.transform.up;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Bullet"))
-        {
-            if (health <= 1)
-            {
-                Destroy(this.gameObject);
-            }
-            else
-            {
-                healthBar.SetActive(true);
-                health--;
-                Vector3 scale = healthBar.transform.localScale;
-                scale.x *= (health / maxhealth);
-                healthBar.transform.localScale = scale;
-                minPlayerRadius = 100;
-            }
-        }
 
-        if (other.CompareTag("TrojanBullet"))
-        {
-            if (health <= 1)
-            {
-                Destroy(this.gameObject);
-            }
-            else
-            {
-                healthBar.SetActive(true);
-                health -= 1.5f;
-                Vector3 scale = healthBar.transform.localScale;
-                scale.x *= (health / maxhealth);
-                healthBar.transform.localScale = scale;
-                minPlayerRadius = 100;
-            }
-        }
 
-        if (other.CompareTag("WormBullet"))
-        {
-            if (health <= 1)
-            {
-                Destroy(this.gameObject);
-            }
-            else
-            {
-                healthBar.SetActive(true);
-                health -= 0.5f;
-                Vector3 scale = healthBar.transform.localScale;
-                scale.x *= (health / maxhealth);
-                healthBar.transform.localScale = scale;
-                minPlayerRadius = 100;
-            }
-        }
+        //switch (other.tag)
+        //{
+        //    case "Bullet":
+        //        Damage(1);
+        //        break;
+        //    case "TrojanBullet":
+        //        Damage(1.5f);
+        //        break;
+        //    case "WormBullet":
+        //        Damage(0.5f);
+        //        break;
+        //    case "BackdoorBullet":
+        //        Damage(2);
+        //        break;
+        //    case "FisherBullet":
+        //        Damage(1);
+        //        break;
+        //    default:
+        //        break;
+        //}
+    }
 
-        if (other.CompareTag("BackdoorBullet"))
+    void Damage(float amount)
+    {
+        if (health <= 1)
         {
-            if (health <= 1)
-            {
-                Destroy(this.gameObject);
-            }
-            else
-            {
-                healthBar.SetActive(true);
-                health -= 2f;
-                Vector3 scale = healthBar.transform.localScale;
-                scale.x *= (health / maxhealth);
-                healthBar.transform.localScale = scale;
-                minPlayerRadius = 100;
-            }
+            Destroy(this.gameObject);
         }
-
-        if (other.CompareTag("FisherBullet"))
+        else
         {
-            if (health <= 1)
-            {
-                Destroy(this.gameObject);
-            }
-            else
-            {
-                healthBar.SetActive(true);
-                health--;
-                Vector3 scale = healthBar.transform.localScale;
-                scale.x *= (health / maxhealth);
-                healthBar.transform.localScale = scale;
-                minPlayerRadius = 100;
-            }
+            healthBar.SetActive(true);
+            health -= amount;
+            Vector3 scale = healthBar.transform.localScale;
+            scale.x *= (health / maxhealth);
+            healthBar.transform.localScale = scale;
+            minPlayerRadius = 100;
         }
     }
 

@@ -5,6 +5,7 @@ public class LevelGenerator : MonoBehaviour {
     public Texture2D map;
     private Vector3 centre;
     int[,] grid;
+    GameObject temp;
 
 	public ColorToPrefab[] colorMappings;
 
@@ -17,7 +18,7 @@ public class LevelGenerator : MonoBehaviour {
     {
         grid = new int[width, height];
         map = Resources.Load<Texture2D>("room" + width + "x" + height + "_" + Random.Range(0, 4));
-        this.centre = new Vector3(centre.x - width /2 +0.5f, centre.y - height /2 + 0.5f, 0);
+        this.centre = new Vector3(centre.x - width /2 + 0.5f, centre.y - height /2 + 0.5f, 0);
         GenerateGrid();
         GenerateLevel();
     }
@@ -77,6 +78,8 @@ public class LevelGenerator : MonoBehaviour {
 
     void GenerateLevel()
     {
+        temp = new GameObject("Enemies");
+        temp.transform.parent = transform;
         for (int x = 0; x < grid.GetLength(0); x++)
         {
             for (int y = 0; y < grid.GetLength(0); y++)
@@ -84,38 +87,38 @@ public class LevelGenerator : MonoBehaviour {
                 switch (grid[x, y])
                 {
                     case 0:
-                        InstantiateTile("Void", x, y);
+                        InstantiateTile("Void", x, y, transform);
                         break;
                     case 1:
                         if (y == map.height - 1 || y != 0) { 
                             if(grid[x, y - 1] > 1)
-                                InstantiateTile("Wall", x, y);
+                                InstantiateTile("Wall", x, y, transform);
                             else
-                                InstantiateTile("Void", x, y);
+                                InstantiateTile("Void", x, y, transform);
                         }
                         else
-                            InstantiateTile("Void", x, y);
+                            InstantiateTile("Void", x, y, transform);
                         break;
                     case 2:
-                        InstantiateTile("Floor", x, y);
+                        InstantiateTile("Floor", x, y, transform);
                         break;
                     case 3:
-                        InstantiateTile("Floor", x, y);
-                        InstantiateTile("Enemy", x, y);
+                        InstantiateTile("Floor", x, y, transform);
+                        InstantiateTile("Enemy", x, y, temp.transform);
                         break;
                     case 4:
-                        InstantiateTile("Floor", x, y);
-                        InstantiateTile("Splitter4", x, y);
+                        InstantiateTile("Floor", x, y, transform);
+                        InstantiateTile("Splitter4", x, y, temp.transform);
                         break;
                     default:
-                        InstantiateTile("Void", x, y);
+                        InstantiateTile("Void", x, y, transform);
                         break;
                 }
             }
         }
     }
-    void InstantiateTile(string name, int x, int y)
+    void InstantiateTile(string name, int x, int y, Transform parent)
     {
-        Instantiate(Resources.Load<GameObject>(name), new Vector3(x, y, -3) + centre, Quaternion.identity, transform);
+        Instantiate(Resources.Load<GameObject>(name), new Vector3(x, y, -3) + centre, Quaternion.identity, parent);
     }
 }

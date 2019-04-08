@@ -7,7 +7,7 @@ public class Door : MonoBehaviour{
     Vector3 direction;
     List<Door> destinations;
     Vector3 position;
-    bool activate = false;
+    bool activate = false, delay = false;
     Transform player;
 
     private void Start()
@@ -23,8 +23,10 @@ public class Door : MonoBehaviour{
         }
         else
         {
-            destinations = new List<Door>();
-            destinations.Add(newDest);
+            destinations = new List<Door>
+            {
+                newDest
+            };
         }
 
     }
@@ -35,7 +37,12 @@ public class Door : MonoBehaviour{
         {
             if (Input.GetAxis("Door") > 0.1)
             {
+                delay = true;
+            }
+            if (Input.GetAxis("Door") < 0.1 && delay)
+            {
                 Teleport();
+                delay = false;
             }
         }
     }
@@ -50,7 +57,7 @@ public class Door : MonoBehaviour{
         if (collision.CompareTag("Player"))
         {
             activate = true;
-            player = collision.transform;
+            player = collision.transform.parent;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)

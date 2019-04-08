@@ -35,11 +35,12 @@ public class CloneMovement : MonoBehaviour
         an = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         health = maxhealth;
-        randomposition = Random.insideUnitCircle.normalized;
+        randomposition = Random.insideUnitCircle * 2;
     }
 
     // Update is called once per frame
     void FixedUpdate() {
+        sr.flipX = false;
         if (cd)
         {
             if (startTime - Time.time <= -2) {
@@ -51,6 +52,7 @@ public class CloneMovement : MonoBehaviour
             direction = main.position - transform.position;
             direction += randomposition;
         }
+        
         shootingDir.x = Input.GetAxis("ShootingHorizontal");
         shootingDir.y = Input.GetAxis("ShootingVertical");
 
@@ -67,9 +69,18 @@ public class CloneMovement : MonoBehaviour
                 an.SetFloat("Horizontal", shootingDir.x);
                 an.SetFloat("Vertical", shootingDir.y);
             }
+
+            if(direction.magnitude > 10)
+            {
+                transform.position = main.position;
+            }
         }
         else
         {
+            if (arm.localRotation.eulerAngles.z - 180 < 0)
+            {
+                sr.flipX = true;
+            }
             an.SetBool("Moving", false);
         }
         

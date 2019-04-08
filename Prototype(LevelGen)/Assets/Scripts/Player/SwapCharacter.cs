@@ -23,18 +23,18 @@ public class SwapCharacter : MonoBehaviour {
 	// Update is called once per frame
 	void LateUpdate () {
 
-        if (Input.GetAxis("Swap") > 0.2)
-        {
-            if (!alreadyPressed)
-            {
-                ShapeShift();
-                alreadyPressed = true;
-            }
-        }
-        else
-        {
-            alreadyPressed = false;
-        }
+        //if (Input.GetAxis("Swap") > 0.2)
+        //{
+        //    if (!alreadyPressed)
+        //    {
+        //        ShapeShift();
+        //        alreadyPressed = true;
+        //    }
+        //}
+        //else
+        //{
+        //    alreadyPressed = false;
+        //}
 
         if (Input.GetAxis("Power") > 0.2 )
         {

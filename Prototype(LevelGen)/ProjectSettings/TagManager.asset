@@ -5,18 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Bullet
-  - Undetectable
-  - loosePanel
-  - TrojanBullet
-  - WormBullet
-  - FisherBullet
-  - BackdoorBullet
   - Door
-  - KeyDoor
-  - Key
-  - BossDoor
-  - Collectible
   - Room
+  - KeyDoor
+  - Collectible
+  - BossDoor
+  - Key
+  - loosePanel
   layers:
   - Default
   - TransparentFX
@@ -27,8 +22,8 @@ TagManager:
   - 
   - 
   - Sight
-  - Obstacles
-  - loosePanel
+  - 
+  - 
   - 
   - 
   - 
@@ -53,4 +48,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2783356645
+    locked: 0
+  - name: Player
+    uniqueID: 388252777
+    locked: 0
+  - name: OverPlayer
+    uniqueID: 37360999
     locked: 0

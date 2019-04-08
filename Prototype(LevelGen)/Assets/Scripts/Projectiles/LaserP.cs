@@ -9,7 +9,7 @@ public class LaserP : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        GetComponent<Rigidbody2D>().velocity = transform.up * speed;
+        GetComponent<Rigidbody2D>().velocity = transform.up * speed * Time.deltaTime;
         initialpos = transform.position;
 	}
 	
@@ -23,7 +23,7 @@ public class LaserP : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Player") && !collision.CompareTag("Door") && !collision.CompareTag("Room")) { 
+        if (!collision.CompareTag("Player") && !collision.CompareTag("Door") && !collision.CompareTag("Room") && !collision.CompareTag("Door") && !collision.CompareTag("Bullet")) { 
             Destroy(this.gameObject);
         }
         print(collision.gameObject.name);

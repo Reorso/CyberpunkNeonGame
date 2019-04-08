@@ -9,13 +9,13 @@ InputManager:
     m_Name: Horizontal
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: a
-    positiveButton: d
-    altNegativeButton: 
-    altPositiveButton: 
-    gravity: 10
-    dead: 0.001
-    sensitivity: 10
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: a
+    altPositiveButton: d
+    gravity: 100
+    dead: 0.1
+    sensitivity: 100
     snap: 0
     invert: 0
     type: 0
@@ -25,17 +25,17 @@ InputManager:
     m_Name: Vertical
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: s
-    positiveButton: w
-    altNegativeButton: 
-    altPositiveButton: 
-    gravity: 10
-    dead: 0.001
-    sensitivity: 10
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: s
+    altPositiveButton: w
+    gravity: 100
+    dead: 0.1
+    sensitivity: 100
     snap: 0
     invert: 0
     type: 0
-    axis: 1
+    axis: 0
     joyNum: 0
   - serializedVersion: 3
     m_Name: Fire1
@@ -153,40 +153,40 @@ InputManager:
     m_Name: ShootingHorizontal
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: left
-    positiveButton: right
-    altNegativeButton: 
-    altPositiveButton: 
-    gravity: 10
-    dead: 0.001
-    sensitivity: 10
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: left
+    altPositiveButton: right
+    gravity: 100
+    dead: 0.1
+    sensitivity: 100
     snap: 0
     invert: 0
     type: 0
-    axis: 3
+    axis: 0
     joyNum: 0
   - serializedVersion: 3
     m_Name: ShootingVertical
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: down
-    positiveButton: up
-    altNegativeButton: 
-    altPositiveButton: 
-    gravity: 10
-    dead: 0.001
-    sensitivity: 10
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: down
+    altPositiveButton: up
+    gravity: 100
+    dead: 0.1
+    sensitivity: 100
     snap: 0
     invert: 0
     type: 0
-    axis: 4
+    axis: 1
     joyNum: 0
   - serializedVersion: 3
     m_Name: Power
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: mouse 1
+    positiveButton: l
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -198,11 +198,11 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Swap
+    m_Name: Door
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick button 2
+    positiveButton: k
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -214,11 +214,11 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Fire3
+    m_Name: Map
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick button 2
+    positiveButton: tab
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -269,38 +269,6 @@ InputManager:
     positiveButton: enter
     altNegativeButton: 
     altPositiveButton: space
-    gravity: 1000
-    dead: 0.001
-    sensitivity: 1000
-    snap: 0
-    invert: 0
-    type: 0
-    axis: 0
-    joyNum: 0
-  - serializedVersion: 3
-    m_Name: Door
-    descriptiveName: 
-    descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: k
-    altNegativeButton: 
-    altPositiveButton: joystick button 2
-    gravity: 1000
-    dead: 0.001
-    sensitivity: 1000
-    snap: 0
-    invert: 0
-    type: 0
-    axis: 0
-    joyNum: 0
-  - serializedVersion: 3
-    m_Name: Power
-    descriptiveName: 
-    descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: l
-    altNegativeButton: 
-    altPositiveButton: joystick button 1
     gravity: 1000
     dead: 0.001
     sensitivity: 1000

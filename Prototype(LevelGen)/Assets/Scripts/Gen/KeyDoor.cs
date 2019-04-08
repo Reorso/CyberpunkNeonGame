@@ -32,10 +32,7 @@ public class KeyDoor : MonoBehaviour {
             }
         }
 
-        if (collision.CompareTag("Door"))
-        {
-            Destroy(collision.gameObject);
-        }
+
 
         if (collision.CompareTag("Collectible"))
         {

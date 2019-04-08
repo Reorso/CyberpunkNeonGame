@@ -46,7 +46,7 @@ public class Chaser : MonoBehaviour {
         Collider2D[] players = Physics2D.OverlapCircleAll(transform.position, minPlayerRadius, LayerMask.GetMask("Sight"));
         if (players.Length > 0)
         {
-            Vector2 distance = players[0].transform.position - this.transform.position;
+            Vector2 distance = players[(int)Random.Range(0,players.Length)].transform.position - this.transform.position;
             chasing = true;
             transform.up = distance;
             rb.velocity = transform.up * speed;

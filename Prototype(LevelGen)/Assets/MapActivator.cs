@@ -15,12 +15,12 @@ public class MapActivator : MonoBehaviour {
         if (Input.GetAxis("Map") > 0)
         {
             c.a = 1;
-            this.gameObject.GetComponent<Image>().defaultMaterial.color = c;
+            this.gameObject.GetComponent<Image>().material.color = c;
         }
         else
         {
             c.a = 0;
-            this.gameObject.GetComponent<Image>().defaultMaterial.color = c;
+            this.gameObject.GetComponent<Image>().material.color = c;
         }
 	}
 }

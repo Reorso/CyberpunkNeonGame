@@ -84,7 +84,6 @@ public class DungeonGenerator : MonoBehaviour
         Texture2D map = CreateMapTexture();
         DungeonMapTexture.GetComponent<Image>().sprite = Sprite.Create(map, new Rect(0,0,map.width, map.height), DungeonMapTexture.GetComponent<RectTransform>().pivot);
         DungeonMapTexture.transform.localScale = new Vector2(Grid.GetLength(0), Grid.GetLength(1));
-        CreateLevel();
 
         foreach (Room room in Rooms)
         {
@@ -147,7 +146,6 @@ public class DungeonGenerator : MonoBehaviour
             }
         }
 
-
         int width = (int)(RoomGenerator.XMax - RoomGenerator.XMin);
         int height = (int)(RoomGenerator.YMax - RoomGenerator.YMin);
         Grid = new int[width, height];
@@ -174,8 +172,8 @@ public class DungeonGenerator : MonoBehaviour
                         }
                         else if (!(x == startx || y == starty || x == endx - 1 || y == endy - 1))
                         {
-                            //Grid[x, y] = Rooms[n].ID;
-                            Grid[x, y] = (int)TileType.floor;
+                            Grid[x, y] = Rooms[n].ID;
+                            //Grid[x, y] = (int)TileType.floor;
                         }
                         else
                             Grid[x, y] = (int)TileType.Nothing;
@@ -207,45 +205,8 @@ public class DungeonGenerator : MonoBehaviour
                     //Adjust lines to grid coordinates
                     p0 = new Vector2(p0.x - RoomGenerator.XMin, p0.y - RoomGenerator.YMin);
                     p1 = new Vector2(p1.x - RoomGenerator.XMin, p1.y - RoomGenerator.YMin);
-                    
 
-                    //Create the hallways in our grid
-                    AddHallway(p0, p1);
                 }
-            }
-        }
-    }
-
-    void AddHallway(Vector2 p0, Vector2 p1)
-    {
-        //Vertical direction
-        if ((int)p1.x == (int)p0.x)
-        {
-            for (int y = (int)p0.y; y < (int)p1.y; y++)
-            {
-
-                //if the tile is nothing then make it a hallway
-                if (Grid[(int)p1.x, y] == (int)TileType.Nothing)
-                {
-                    Grid[(int)p1.x, y] = (int)TileType.Hallway;
-                }
-
-                
-            }
-        }
-
-        //Horizontal direction
-        else if ((int)p1.y == (int)p0.y)
-        {
-            for (int x = (int)p0.x; x < (int)p1.x; x++)
-            {
-
-                //if the tile is nothing then make it a hallway
-                if (Grid[x, (int)p1.y] == (int)TileType.Nothing)
-                {
-                    Grid[x, (int)p1.y] = (int)TileType.Hallway;
-                }
-
             }
         }
     }
@@ -341,199 +302,6 @@ public class DungeonGenerator : MonoBehaviour
             }
         }
     }
-
-    void AddDoor(Vector2 p0, Vector2 p1)
-    {
-        bool alreadyinWall = false;
-        int counter = 0;
-        //Vertical direction
-        if ((int)p1.x == (int)p0.x)
-        {
-            for (int y = (int)p0.y; y < (int)p1.y; y++)
-            {
-
-                if ((int)p1.x < Grid.GetLength(0) /*- 2*/)
-                {
-                    if ((Grid[(int)p1.x, y] == (int)TileType.Wall ) /*&& (Grid[(int)p1.x + 1, y] == (int)TileType.Wall) && (Grid[(int)p1.x + 2, y] == (int)TileType.Wall)*/)
-                    {
-                        if (!alreadyinWall)
-                        {
-                            Grid[(int)p1.x, y] = (int)TileType.Door;
-                            counter++;
-                            if(counter > 2)
-                            {
-                                alreadyinWall = true;
-                                for(int i = 1; i < counter; i++)
-                                {
-                                    Grid[(int)p1.x, y - i] = (int)TileType.Hallway;
-                                }
-
-                            }
-                            //Grid[(int)p1.x + 1, y] = (int)TileType.Door;
-                            //Grid[(int)p1.x + 2, y] = (int)TileType.Door;
-                        }
-                        else
-                        {
-                            Grid[(int)p1.x, y] = (int)TileType.Hallway;
-
-                        }
-
-                    }
-                    else
-                    {
-                        counter = 0;
-                        alreadyinWall = false;
-                        Grid[(int)p1.x, y] = (int)TileType.Hallway;
-
-                    }
-                }
-                else
-                {
-                    if ((Grid[(int)p1.x, y] == (int)TileType.Wall) /*&& (Grid[(int)p1.x - 1, y] == (int)TileType.Wall) && (Grid[(int)p1.x - 2, y] == (int)TileType.Wall)*/)
-                    {
-                        if (!alreadyinWall)
-                        {
-                            if (!alreadyinWall)
-                            {
-                                Grid[(int)p1.x, y] = (int)TileType.Door;
-                                counter++;
-                                if (counter > 2)
-                                {
-                                    alreadyinWall = true;
-                                    for (int i = 1; i < counter; i++)
-                                    {
-                                        Grid[(int)p1.x, y - i] = (int)TileType.Hallway;
-                                    }
-
-                                }
-                            }
-                            //Grid[(int)p1.x - 1, y] = (int)TileType.Door;
-                            //Grid[(int)p1.x - 2, y] = (int)TileType.Door;
-                        }
-                        else
-                        {
-                            Grid[(int)p1.x, y] = (int)TileType.Hallway;
-                        }
-
-                    }
-                    else
-                    {
-                        counter = 0;
-                        alreadyinWall = false;
-                        Grid[(int)p1.x, y] = (int)TileType.Hallway;
-                    }
-                }
-            }
-        }
-
-        //Horizontal direction
-        else if ((int)p1.y == (int)p0.y)
-        {
-            for (int x = (int)p0.x; x < (int)p1.x; x++)
-            {
-
-                if ((int)p1.y < Grid.GetLength(1) /*-2*/)
-                {
-
-                    if ((Grid[x, (int)p1.y] == (int)TileType.Wall) /*&& (Grid[x, (int)p1.y + 1] == (int)TileType.Wall) && (Grid[x, (int)p1.y + 2] == (int)TileType.Wall)*/)
-                    {
-                        if (!alreadyinWall)
-                        {
-                            Grid[x, (int)p1.y] = (int)TileType.Door;
-                            counter++;
-                            if (counter > 2)
-                            {
-                                alreadyinWall = true;
-                                for (int i = 1; i < counter; i++)
-                                {
-                                    Grid[x - i, (int)p1.y] = (int)TileType.Hallway;
-                                }
-
-                            }
-                        }
-                        else
-                        {
-                            Grid[x, (int)p1.y] = (int)TileType.Hallway;
-                        }
-                        //Grid[x, (int)p1.y + 1] = (int)TileType.Door;
-                        //Grid[x, (int)p1.y + 2] = (int)TileType.Door;
-
-                    }
-                    else
-                    {
-                        counter = 0;
-                        alreadyinWall = false;
-                        Grid[x, (int)p1.y] = (int)TileType.Hallway;
-                    }
-
-                }
-                else
-                {
-                    if ((Grid[x, (int)p1.y] == (int)TileType.Wall) /*&& (Grid[x, (int)p1.y - 1] == (int)TileType.Wall) && (Grid[x, (int)p1.y - 2] == (int)TileType.Wall)*/)
-                    {
-                        if (!alreadyinWall)
-                        {
-                            Grid[x, (int)p1.y] = (int)TileType.Door;
-                            counter++;
-                            if (counter > 2)
-                            {
-                                alreadyinWall = true;
-                                for (int i = 1; i < counter; i++)
-                                {
-                                    Grid[x - i, (int)p1.y] = (int)TileType.Hallway;
-                                }
-
-                            }
-                            //Grid[x, (int)p1.y + 1] = (int)TileType.Door;
-                            //Grid[x, (int)p1.y + 2] = (int)TileType.Door;
-                        }
-                        else
-                        {
-                            Grid[x, (int)p1.y] = (int)TileType.Hallway;
-                        }
-
-                    }
-                    else
-                    {
-                        counter = 0;
-                        alreadyinWall = false;
-                        Grid[x, (int)p1.y] = (int)TileType.Hallway;
-                    }
-                }
-            }
-        }
-
-        
-
-    }
-
-    void CreateLevel()
-    {
-        int width = Grid.GetLength(0);
-        int height = Grid.GetLength(1);
-        GameObject level = new GameObject("Level");
-        level.transform.position = new Vector3(((int)RoomGenerator.XMin) + 0.5f, ((int)RoomGenerator.YMin) + 0.5f);
-        
-        for (var x = 0; x < width; x++)
-        {
-            for (var y = 0; y < height; y++)
-            {
-                if(Grid[x, y] == (int)TileType.Hallway)
-                {
-                    GameObject temp = Instantiate(prefabs[3], level.transform);
-                    temp.transform.localPosition = new Vector3(x, y);
-                }
-                if (Grid[x, y] == (int)TileType.Door)
-                {
-                    GameObject temp = Instantiate(prefabs[2], level.transform);
-                    temp.transform.localPosition = new Vector3(x, y);
-                   
-                }
-
-            }
-        }
-    }
-    
 
     Texture2D CreateMapTexture()
     {
