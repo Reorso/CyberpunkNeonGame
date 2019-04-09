@@ -22,6 +22,21 @@ public class LevelGenerator : MonoBehaviour {
         GenerateGrid();
         GenerateLevel();
     }
+    public void Generate(int width, int height, Vector2 centre, bool startend)
+    {
+        if (startend)
+        {
+            map = Resources.Load<Texture2D>("Start" + 0 /*Random.Range(0, 4)*/);
+        }
+        else
+        {
+           map = Resources.Load<Texture2D>("End" + 0 /*Random.Range(0, 4)*/);
+        }
+        grid = new int[width, height];
+        this.centre = new Vector3(centre.x - width / 2 + 0.5f, centre.y - height / 2 + 0.5f, 0);
+        GenerateGrid();
+        GenerateLevel();
+    }
 
     void GenerateGrid ()
 	{
@@ -120,5 +135,9 @@ public class LevelGenerator : MonoBehaviour {
     void InstantiateTile(string name, int x, int y, Transform parent)
     {
         Instantiate(Resources.Load<GameObject>(name), new Vector3(x, y, -3) + centre, Quaternion.identity, parent);
+    }
+    public GameObject Enemy()
+    {
+        return temp;
     }
 }

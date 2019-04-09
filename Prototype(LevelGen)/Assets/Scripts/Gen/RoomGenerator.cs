@@ -262,11 +262,14 @@ public class RoomGenerator : MonoBehaviour
         if (roomsWithOneConnection.Count >= 1)
         {
             start = roomsWithOneConnection[0];
+            start.gameObject.transform.localScale = new Vector3(10,10,1);
+
             roomsWithOneConnection.RemoveAt(0);
         }
         else if (roomsWithTwoConnection.Count > 1)
         {
             start = roomsWithTwoConnection[0];
+            start.gameObject.transform.localScale = new Vector3(10, 10, 1);
             roomsWithTwoConnection.RemoveAt(0);
         }
 
@@ -280,6 +283,7 @@ public class RoomGenerator : MonoBehaviour
                 {
                     distance = d;
                     end = roomsWithOneConnection[n];
+                    end.gameObject.transform.localScale = new Vector3(10, 10, 1);
                 }
             }
             for (int n = 0; n < roomsWithTwoConnection.Count; n++)
@@ -289,6 +293,7 @@ public class RoomGenerator : MonoBehaviour
                 {
                     distance = d;
                     end = roomsWithTwoConnection[n];
+                    end.gameObject.transform.localScale = new Vector3(10, 10, 1);
                 }
             }
         }
@@ -367,7 +372,6 @@ public class RoomGenerator : MonoBehaviour
 
         GameObject.Destroy(LinesContainer);
         GameObject.Destroy(RoomsContainer);
-
-
+        
     }
 }

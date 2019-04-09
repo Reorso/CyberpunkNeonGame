@@ -23,7 +23,7 @@ public class LaserP : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Player") && !collision.CompareTag("Door") && !collision.CompareTag("Room") && !collision.CompareTag("Door") && !collision.CompareTag("Bullet")) { 
+        if (!collision.CompareTag("Player") && !collision.CompareTag("Door") && !collision.CompareTag("Room") && !collision.CompareTag("Door") && !collision.CompareTag("Bullet") && !collision.CompareTag("Clone")) { 
             Destroy(this.gameObject);
         }
         print(collision.gameObject.name);

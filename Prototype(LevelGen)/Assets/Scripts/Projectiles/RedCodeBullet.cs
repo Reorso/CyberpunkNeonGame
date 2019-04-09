@@ -32,7 +32,7 @@ public class RedCodeBullet : MonoBehaviour {
             Destroy(collision.gameObject);
             parent.AddClone(transform.position);
         }
-        if (!collision.CompareTag("Player") && !collision.CompareTag("Door") && !collision.CompareTag("Room"))
+        if (!collision.CompareTag("Player") && !collision.CompareTag("Door") && !collision.CompareTag("Room") && !collision.CompareTag("Clone") && !collision.CompareTag("Bullet"))
         {
             print("hit");
             Destroy(this.gameObject);

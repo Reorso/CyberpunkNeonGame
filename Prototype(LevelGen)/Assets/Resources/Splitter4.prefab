@@ -38,9 +38,6 @@ GameObject:
   - component: {fileID: 4708793829193218}
   - component: {fileID: 212986225733199558}
   - component: {fileID: 95912245356539176}
-  - component: {fileID: 114929772089100402}
-  - component: {fileID: 50313329140843712}
-  - component: {fileID: 58678761861432324}
   m_Layer: 0
   m_Name: Splitter Sprite sheet transparent_4
   m_TagString: Finish
@@ -56,9 +53,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4356187667856476}
+  - component: {fileID: 114168583336570432}
+  - component: {fileID: 50304500248896468}
+  - component: {fileID: 58244391438952990}
   m_Layer: 0
   m_Name: Splitter4
-  m_TagString: Untagged
+  m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,20 +97,20 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1631222906537974}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 0.5902243, y: 0.5902243, z: 0.5902243}
   m_Children:
   - {fileID: 4138625498246636}
   m_Father: {fileID: 4356187667856476}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50313329140843712
+--- !u!50 &50304500248896468
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1631222906537974}
+  m_GameObject: {fileID: 1645309237164176}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -124,12 +124,12 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &58678761861432324
+--- !u!58 &58244391438952990
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1631222906537974}
+  m_GameObject: {fileID: 1645309237164176}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -138,7 +138,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5311111
+  m_Radius: 0.32
 --- !u!95 &95912245356539176
 Animator:
   serializedVersion: 3
@@ -157,24 +157,12 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114460463210789122
+--- !u!114 &114168583336570432
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1234262002339118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df827b77c2a9ad34cbbbb5e89d6e46d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: 0.3
---- !u!114 &114929772089100402
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1631222906537974}
+  m_GameObject: {fileID: 1645309237164176}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74fa530afebd5504aa282fa21607bea2, type: 3}
@@ -191,6 +179,18 @@ MonoBehaviour:
   minPlayerRadius: 0
   desiredRot: {x: 0, y: 0, z: 0, w: 0}
   rotSpeed: 0
+--- !u!114 &114460463210789122
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1234262002339118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df827b77c2a9ad34cbbbb5e89d6e46d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: 0.3
 --- !u!212 &212554863582178892
 SpriteRenderer:
   m_ObjectHideFlags: 1

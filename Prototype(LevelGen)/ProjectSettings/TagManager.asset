@@ -12,6 +12,8 @@ TagManager:
   - BossDoor
   - Key
   - loosePanel
+  - EnemyBullet
+  - Clone
   layers:
   - Default
   - TransparentFX

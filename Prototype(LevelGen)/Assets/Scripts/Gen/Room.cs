@@ -8,6 +8,7 @@ public class Room : MonoBehaviour
     //    get;
     //    set;
     //}
+    GameObject enemy;
     public int ID
     {
         get;
@@ -161,6 +162,15 @@ public class Room : MonoBehaviour
         {
             Snap();
         }
+        
+        if(this.enemy != null)
+        {
+            if (this.enemy.transform.childCount <= 0)
+            {
+                door.GetComponent<Door>().active = true;
+                this.enemy = null;
+            }
+        }
     }
 
     void Update()
@@ -197,6 +207,21 @@ public class Room : MonoBehaviour
         GenerateDoors();
         IsLocked = true;
         GetComponent<SpriteRenderer>().enabled = false;
+        enemy = lv.Enemy();
+    }
+    public void GenerateLocalRoom(int width, int height, Vector2 centre, bool start_end)
+    {
+        GetComponent<Collider2D>().isTrigger = true;
+        GameObject room = new GameObject("room" + ID);
+        room.transform.position = transform.position;
+        room.transform.rotation = Quaternion.identity;
+        room.transform.parent = this.transform;
+        LevelGenerator lv = room.AddComponent(typeof(LevelGenerator)) as LevelGenerator;
+        lv.Generate(width, height, centre,start_end);
+        GenerateDoors();
+        IsLocked = true;
+        GetComponent<SpriteRenderer>().enabled = false;
+        enemy = lv.Enemy();
     }
 
     void GenerateDoors()

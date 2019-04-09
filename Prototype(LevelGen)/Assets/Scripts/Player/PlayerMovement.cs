@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public GameObject healthbarPlayer;
     public GameObject loosePanel;
-    bool cd = false;
+    bool cd = false, blocked = false;
     public float startTime = 0;
     float health = 6, maxhealth = 6;
     public GameObject healthBar;
@@ -41,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
                 startTime = 0;
             }
         }
+
         direction.x = Input.GetAxis("Horizontal");
         direction.y = Input.GetAxis("Vertical");
         shootingDir.x = Input.GetAxis("ShootingHorizontal");
@@ -67,15 +68,15 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if (direction != Vector2.zero)
+        if (direction != Vector2.zero && !blocked) 
         {
 
-            rb.velocity = direction.normalized * speed * Time.fixedDeltaTime;
+            rb.velocity = direction.normalized * speed * Time.fixedDeltaTime; 
             an.SetBool("Moving", true);
             if (shootingDir == Vector2.zero)
             {
                 an.SetFloat("Horizontal", direction.x);
-                an.SetFloat("Vertical", direction.y);
+                an.SetFloat("Vertical", direction.y); 
             }
             else
             {
@@ -115,23 +116,19 @@ public class PlayerMovement : MonoBehaviour
 
         if (other.gameObject.CompareTag("Finish"))
         {
-
-            damage();
-            
+            Damage();
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Bullet"))
+        if (collision.gameObject.CompareTag("EnemyBullet"))
         {
-            damage();
+            Damage();
         }
-
-
     }
 
-    void damage()
+    void Damage()
     {
         if (health <= 1)
         {
@@ -162,5 +159,10 @@ public class PlayerMovement : MonoBehaviour
     {
         Destroy(this.gameObject);
         loosePanel.SetActive(true);
+    }
+
+    public void Deactivate()
+    {
+        blocked = !blocked;
     }
 }

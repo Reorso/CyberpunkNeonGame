@@ -91,10 +91,19 @@ public class DungeonGenerator : MonoBehaviour
             {
                 room.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
                 //print(room.ID);
-                room.GenerateLocalRoom((int)room.transform.localScale.x, (int)room.transform.localScale.y, room.Center);
+                
                 if (room.IsStartRoom)
                 {
+                    room.GenerateLocalRoom((int)room.transform.localScale.x, (int)room.transform.localScale.y, room.Center, true);
                     GenerateFirstRoom(room.Center);
+                }
+                else if (room.IsEndRoom)
+                {
+                    room.GenerateLocalRoom((int)room.transform.localScale.x, (int)room.transform.localScale.y, room.Center, false);
+                }
+                else
+                {
+                    room.GenerateLocalRoom((int)room.transform.localScale.x, (int)room.transform.localScale.y, room.Center);
                 }
             }
         }

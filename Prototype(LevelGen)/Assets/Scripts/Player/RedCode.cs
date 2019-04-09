@@ -8,6 +8,7 @@ public class RedCode : MonoBehaviour
     public GameObject bullet, clone;
     public float coolDown;
     private float time;
+    bool hold = true;
 
 	// Use this for initialization
 	void Start ()
@@ -23,10 +24,16 @@ public class RedCode : MonoBehaviour
         {
             time += Time.deltaTime;
         }
-		else if(Input.GetAxis("Power") > 0)
+		else if(Input.GetAxis("Power") > 0.1)
         {
-            ShootSpecial();
+            hold = true;
+
             time = 0;
+        }
+        if(Input.GetAxis("Power") < 0.1 && hold)
+        {
+            hold = false;
+            ShootSpecial();
         }
 	}
 

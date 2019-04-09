@@ -7,17 +7,21 @@ public class Door : MonoBehaviour{
     Vector3 direction;
     List<Door> destinations;
     Vector3 position;
-    bool activate = false, delay = false;
-    Transform player;
+    bool collision = false, delay = false, teleport = false;
+    public bool active = false;
+    GameObject player;
+    int rand;
 
     private void Start()
     {
+        delay = true;
         position = transform.position;
     }
 
     public void AddDestination(Door newDest)
     {
-        if(destinations != null) {
+        if(destinations != null)
+        {
             if (!destinations.Contains(newDest))
                 destinations.Add(newDest);
         }
@@ -33,39 +37,59 @@ public class Door : MonoBehaviour{
 
     private void Update()
     {
-        if (activate)
+        if (active)
         {
-            if (Input.GetAxis("Door") > 0.1)
+            GetComponentInChildren<SpriteRenderer>().enabled = true;
+            if (collision)
             {
-                delay = true;
+                if (Input.GetAxis("Door") > 0.1 && delay)
+                {
+                    player.GetComponent<Collider2D>().enabled = false;
+                    player.GetComponent<PlayerMovement>().Deactivate();
+                    teleport = true;
+                    rand = (int)Random.Range(0, destinations.Count);
+                    delay = false;
+                }
             }
-            if (Input.GetAxis("Door") < 0.1 && delay)
+            if (teleport)
             {
-                Teleport();
-                delay = false;
+                if (Mathf.Abs((player.transform.position - destinations[rand].position).magnitude) <= 1)
+                {
+                    teleport = false;
+                    player.GetComponent<Collider2D>().enabled = true;
+                    delay = true;
+                    player.GetComponent<PlayerMovement>().Deactivate();
+                }
+                else
+                {
+                    Teleport(destinations[rand].position);
+                }
             }
+        }
+        else
+        {
+            GetComponentInChildren<SpriteRenderer>().enabled = false;
         }
     }
 
-    public void Teleport()
+    public void Teleport(Vector3 dest)
     {
-        player.position = destinations[(int)Random.Range(0, destinations.Count)].position;
+        player.transform.position = Vector3.Lerp(player.transform.position, dest, Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            activate = true;
-            player = collision.transform.parent;
+            this.collision = true;
+            player = collision.gameObject;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            activate = false;
-            player = null;
+            this.collision = false;
         }
     }
 }

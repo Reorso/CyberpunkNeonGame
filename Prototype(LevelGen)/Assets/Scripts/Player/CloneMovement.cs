@@ -20,7 +20,7 @@ public class CloneMovement : MonoBehaviour
 
     public float speed = 5;
     public Vector2 direction, rot, shootingDir;
-    private bool facingRight;
+    private bool facingRight, locked = false;
 
     //Vector3 mpos;
     Rigidbody2D rb;
@@ -59,11 +59,15 @@ public class CloneMovement : MonoBehaviour
         if (direction.magnitude > 1) {
 
             rb.velocity = direction.normalized * speed * Time.fixedDeltaTime;
+
             an.SetBool("Moving",true);
-            if(shootingDir == Vector2.zero) { 
+
+            if(shootingDir == Vector2.zero)
+            { 
                 an.SetFloat("Horizontal", direction.x);
                 an.SetFloat("Vertical", direction.y);
             }
+
             else
             {
                 an.SetFloat("Horizontal", shootingDir.x);
@@ -72,7 +76,11 @@ public class CloneMovement : MonoBehaviour
 
             if(direction.magnitude > 10)
             {
-                transform.position = main.position;
+                if (!locked)
+                {
+                    StartCoroutine(WaitAndTeleport());
+                    locked = true;
+                }
             }
         }
         else
@@ -150,5 +158,13 @@ public class CloneMovement : MonoBehaviour
     {
         origin.RemoveClone(gameObject);
         Destroy(gameObject.transform.parent.gameObject);
+    }
+
+    public IEnumerator WaitAndTeleport()
+    {
+        yield return new WaitForSeconds(4);
+        transform.position = main.position;
+        locked = false;
+
     }
 }
