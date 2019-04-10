@@ -20,6 +20,7 @@ public class LaserSpawner : MonoBehaviour {
 
         shootingDir.x = Input.GetAxis("ShootingHorizontal");
         shootingDir.y = Input.GetAxis("ShootingVertical");
+
         if(Input.GetAxis("Shoot") > 0.1f)
         {
             if (shootingDir != Vector2.zero && Time.time > timeToFire)

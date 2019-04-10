@@ -16,6 +16,7 @@ public enum TileType
 
 public class DungeonGenerator : MonoBehaviour
 {
+    public GameObject win;
     public GameObject[] prefabs;
 
     [SerializeField]
@@ -363,5 +364,12 @@ public class DungeonGenerator : MonoBehaviour
         GameObject player = Instantiate(Resources.Load<GameObject>("Player"));
         player.transform.parent = this.transform;
         player.transform.localPosition = center;
+    }
+    void GenerateLastRoom(Vector3 center)
+    {
+        GameObject end = Instantiate(Resources.Load<GameObject>("End"));
+        end.transform.parent = this.transform;
+        end.transform.localPosition = center + new Vector3(0,3,0);
+        end.GetComponent<Exit>().winscreen = win;
     }
 }

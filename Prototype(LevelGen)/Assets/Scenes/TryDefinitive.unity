@@ -722,7 +722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0.6277604, a: 1}
+  m_Color: {r: 0, g: 0.70004034, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1012,6 +1012,10 @@ Prefab:
     - target: {fileID: 4105011481414940, guid: 37038ec64bf533649a063834f67ba21d, type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306871258955348, guid: 37038ec64bf533649a063834f67ba21d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37038ec64bf533649a063834f67ba21d, type: 2}
@@ -1336,13 +1340,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84bfadc0ad4da974c99915f360da7b06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  win: {fileID: 597233577}
   prefabs:
   - {fileID: 1764846442516366, guid: 86422480f17e3d144805950a6f70becc, type: 2}
   - {fileID: 1581642176919248, guid: 81129ef80adf1a94ba50dfbd51de2c81, type: 2}
   - {fileID: 1179642844558250, guid: a47e684e12e358547b84d5b809ff8a0d, type: 2}
   - {fileID: 1764846442516366, guid: 86422480f17e3d144805950a6f70becc, type: 2}
   - {fileID: 1179642844558250, guid: a47e684e12e358547b84d5b809ff8a0d, type: 2}
-  RoomCount: 20
+  RoomCount: 100
   Radius: 50
   MainRoomFrequency: 1
   RoomConnectionFrequency: 0.15
@@ -1862,9 +1867,9 @@ RectTransform:
   m_Father: {fileID: 597233578}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -583, y: 306.99997}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -12, y: 15}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1987085369
